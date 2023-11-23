@@ -1,4 +1,4 @@
 package org.example.Logica;
 
-public class EstadoAsiento {
+public enum EstadoAsiento {
 }
