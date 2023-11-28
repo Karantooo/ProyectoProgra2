@@ -47,7 +47,7 @@ public class Asiento {
         private Boolean reclinable;
         private Boolean sistemaEntretenimiento;
 
-        private Builder(EstadoAsiento estadoAsiento, Pasajero pasajero, String codigoAsiento){
+        public Builder(EstadoAsiento estadoAsiento, Pasajero pasajero, String codigoAsiento){
             this.codigoAsiento = codigoAsiento;
             this.pasajero = pasajero;
             this.codigoAsiento = codigoAsiento;
