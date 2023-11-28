@@ -6,6 +6,10 @@ import org.example.Logica.Recorrido;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class PanelReservarAsiento extends JPanel {
@@ -13,21 +17,33 @@ public class PanelReservarAsiento extends JPanel {
     private ArrayList<Bus> busArrayList;
     public PanelReservarAsiento(PanelMenuInicial panelMenuInicial) {
         this.panelMenuInicial = panelMenuInicial;
-        busArrayList = panelMenuInicial.getPanelPrincipal().getBusArrayList();
+        this.busArrayList = panelMenuInicial.getPanelPrincipal().getBusArrayList();
+        generarViajesPredeterminados();
+        generarViajesPredeterminados();
         this.setLayout(null);
         this.setBackground(Color.orange);
-        generarViajesPredeterminados();
 
+        JPanel panelMitadSuperior = new JPanel(new GridLayout(1,busArrayList.size()));
         for(int i = 0; i < busArrayList.size(); i++){
             PanelViaje panelViaje = new PanelViaje(busArrayList.get(i));
-            panelViaje.setBounds(150 * i, 0, 150, 150);
-            this.add(panelViaje);
+            panelViaje.setBounds(300 * i, 0, 300, 300);
+            int finalI = i;
+            panelViaje.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
+                    System.out.println(busArrayList.get(finalI));
+                }
+            });
+            panelMitadSuperior.add(panelViaje);
         }
+        panelMitadSuperior.setBounds(150, 150, getWidth() / 2, getHeight() / 2);
+        this.add(panelMitadSuperior);
     }
     private void generarViajesPredeterminados() {
         DirectorBus directorBus = new DirectorBus();
-        busArrayList.add(directorBus.buildGrande(new Recorrido("Stgo", "Afta", 12, 30)));
-        busArrayList.add(directorBus.buildChico(new Recorrido("Ccp", "Stgo", 6, 0)));
-        busArrayList.add(directorBus.buildMediano(new Recorrido("Chiguayante", "Stgo", 15, 30)));
+        busArrayList.add(directorBus.buildGrande(new Recorrido("Stgo", "Afta", LocalDateTime.of(2024,1,27,15,30))));
+        busArrayList.add(directorBus.buildChico(new Recorrido("Ccp", "Stgo", LocalDateTime.of(2024,1,13,12,0))));
+        busArrayList.add(directorBus.buildMediano(new Recorrido("Chiguayante", "Stgo", LocalDateTime.of(2023,12,24,12,30))));
     }
 }
