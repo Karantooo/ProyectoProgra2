@@ -1,12 +1,21 @@
 package org.example.Vistas;
 
+import org.example.Logica.Bus;
+import org.example.Logica.Recorrido;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PanelCrearViaje extends JPanel {
-
+    private String origen;
+    private String destino;
+    private int hora;
+    private int minuto;
+    private int duracion;
+    private int capacidadPorPiso;
+    private int cantidadDePisos;
     private PanelMenuInicial panelMenuInicial;
     public PanelCrearViaje(PanelMenuInicial panelMenuInicial){
         this.panelMenuInicial = panelMenuInicial;
@@ -102,8 +111,19 @@ public class PanelCrearViaje extends JPanel {
         botonEnviar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                boolean estadoenvio = revisarEnvio(textoHora.getText(), textoMinutos.getText(), textoDuracion.getText());
+                origen = textoOrigen.getText();
+                destino = textoDestino.getText();
+                hora = Integer.parseInt(textoHora.getText());
+                minuto = Integer.parseInt(textoMinutos.getText());
+                capacidadPorPiso = (int) comboBoxCapacidadPorPiso.getSelectedItem();
+                cantidadDePisos = (int) comboBoxCantidadDePisos.getSelectedItem();
+                duracion = Integer.parseInt(textoDuracion.getText());
+
+                boolean estadoenvio = revisarEnvio();
                 if(estadoenvio){
+                    Recorrido recorrido = new Recorrido(origen, destino, hora, minuto);
+                    Bus.BusBuilder busBuilder = new Bus.BusBuilder(recorrido);
+                    panelMenuInicial.getPanelPrincipal().agregarBus(busBuilder.buildBus());
                     generarMensajeCreacionCorrecta();
                 }
                 else generarMensajeCreacionIncorrecta();
@@ -112,10 +132,7 @@ public class PanelCrearViaje extends JPanel {
         this.add(botonEnviar);
     }
 
-    private boolean revisarEnvio(String horaObtenida, String minutoObtenido, String duracionObtenida){
-        int hora = Integer.parseInt(horaObtenida);
-        int minuto = Integer.parseInt(minutoObtenido);
-        int duracion = Integer.parseInt(duracionObtenida);
+    private boolean revisarEnvio(){
         if(hora < 0 | hora > 24) return false;
         if(minuto < 0 | minuto > 60) return false;
         if(duracion < 0) return false;

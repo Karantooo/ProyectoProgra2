@@ -5,7 +5,9 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class PanelMenuInicial extends JPanel {
-    public PanelMenuInicial(){
+    private PanelPrincipal panelPrincipal;
+    public PanelMenuInicial(PanelPrincipal panelPrincipal){
+        this.panelPrincipal = panelPrincipal;
         this.setLayout(new GridLayout(1,2));
         this.setPreferredSize(new Dimension(1400,800));
 
@@ -54,6 +56,10 @@ public class PanelMenuInicial extends JPanel {
         this.add(botonReservarAsiento);
         repaint();
         revalidate();
+    }
+
+    public PanelPrincipal getPanelPrincipal() {
+        return panelPrincipal;
     }
 }
 
