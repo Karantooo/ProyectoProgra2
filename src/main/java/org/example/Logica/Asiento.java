@@ -7,11 +7,37 @@ public class Asiento {
     private Boolean reclinable;
     private Boolean sistemaEntretenimiento;
 
+
+
     private Asiento(EstadoAsiento estadoAsiento, Pasajero pasajero, String codigoAsiento, Boolean reclinable,
      Boolean sistemaEntretenimiento){
-        this.codigoAsiento = codigoAsiento;
+        this.estadoAsiento = estadoAsiento;
         this.pasajero = pasajero;
         this.codigoAsiento = codigoAsiento;
+    }
+
+    public EstadoAsiento getEstadoAsiento() {
+        return estadoAsiento;
+    }
+
+    public Pasajero getPasajero() {
+        return pasajero;
+    }
+
+    public String getCodigoAsiento() {
+        return codigoAsiento;
+    }
+
+    public Boolean getReclinable() {
+        return reclinable;
+    }
+
+    public Boolean getSistemaEntretenimiento() {
+        return sistemaEntretenimiento;
+    }
+
+    public void setEstadoAsiento(EstadoAsiento estadoAsiento) {
+        this.estadoAsiento = estadoAsiento;
     }
 
     public static class Builder{
