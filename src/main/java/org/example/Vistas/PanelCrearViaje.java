@@ -7,13 +7,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 
 public class PanelCrearViaje extends JPanel {
     private String origen;
     private String destino;
+    private int year;
+    private int month;
+    private int day;
     private int hora;
     private int minuto;
     private int duracion;
+    private LocalDateTime fechaYHora;
     private int capacidadPorPiso;
     private int cantidadDePisos;
     private PanelMenuInicial panelMenuInicial;
@@ -23,7 +28,7 @@ public class PanelCrearViaje extends JPanel {
         this.setLayout(null);
 
         int xInicial = 0;
-        int yInicial = 100;
+        int yInicial = 50;
 
         //JLabels
         JLabel labelOrigen = new JLabel("Origen: ");
@@ -50,6 +55,30 @@ public class PanelCrearViaje extends JPanel {
         labelMinutos.setHorizontalAlignment(SwingConstants.CENTER);
         labelMinutos.setVerticalAlignment(SwingConstants.CENTER);
         this.add(labelMinutos);
+        JLabel labelFecha = new JLabel("Fecha: ");
+        labelFecha.setFont(new Font("SansSerif", Font.PLAIN, 30));
+        labelFecha.setBounds(1000,yInicial + 250,150,50);
+        labelFecha.setHorizontalAlignment(SwingConstants.CENTER);
+        labelFecha.setVerticalAlignment(SwingConstants.CENTER);
+        this.add(labelFecha);
+        JLabel labelDia = new JLabel("Dia: ");
+        labelDia.setFont(new Font("SansSerif", Font.PLAIN, 30));
+        labelDia.setBounds(700,yInicial + 300,150,50);
+        labelDia.setHorizontalAlignment(SwingConstants.CENTER);
+        labelDia.setVerticalAlignment(SwingConstants.CENTER);
+        this.add(labelDia);
+        JLabel labelMes = new JLabel("Mes: ");
+        labelMes.setFont(new Font("SansSerif", Font.PLAIN, 30));
+        labelMes.setBounds(700,yInicial + 400,150,50);
+        labelMes.setHorizontalAlignment(SwingConstants.CENTER);
+        labelMes.setVerticalAlignment(SwingConstants.CENTER);
+        this.add(labelMes);
+        JLabel labelYear = new JLabel("Año: ");
+        labelYear.setFont(new Font("SansSerif", Font.PLAIN, 30));
+        labelYear.setBounds(700,yInicial + 500,150,50);
+        labelYear.setHorizontalAlignment(SwingConstants.CENTER);
+        labelYear.setVerticalAlignment(SwingConstants.CENTER);
+        this.add(labelYear);
         JLabel labelCapacidadPorPiso = new JLabel("Capacidad por piso: ");
         labelCapacidadPorPiso.setFont(new Font("SansSerif", Font.PLAIN, 15));
         labelCapacidadPorPiso.setBounds(0,yInicial + 300,150,50);
@@ -87,6 +116,18 @@ public class PanelCrearViaje extends JPanel {
         textoMinutos.setFont(new Font("SansSerif", Font.PLAIN, sizeTextoIngresado));
         textoMinutos.setBounds(150 + 700, yInicial + 200, 500, 50);
         this.add(textoMinutos);
+        JTextField textoDia = new JTextField();
+        textoDia.setFont(new Font("SansSerif", Font.PLAIN, sizeTextoIngresado));
+        textoDia.setBounds(150 + 700, yInicial + 300, 500, 50);
+        this.add(textoDia);
+        JTextField textoMes = new JTextField();
+        textoMes.setFont(new Font("SansSerif", Font.PLAIN, sizeTextoIngresado));
+        textoMes.setBounds(150 + 700, yInicial + 400, 500, 50);
+        this.add(textoMes);
+        JTextField textoYear = new JTextField();
+        textoYear.setFont(new Font("SansSerif", Font.PLAIN, sizeTextoIngresado));
+        textoYear.setBounds(150 + 700, yInicial + 500, 500, 50);
+        this.add(textoYear);
         JTextField textoDuracion = new JTextField();
         textoDuracion.setFont(new Font("SansSerif", Font.PLAIN, sizeTextoIngresado));
         textoDuracion.setBounds(150, yInicial + 500, 500, 50);
@@ -107,21 +148,24 @@ public class PanelCrearViaje extends JPanel {
 
         //JButton
         JButton botonEnviar = new JButton("Crear");
-        botonEnviar.setBounds(1150,yInicial+ 525, 200, 100);
+        botonEnviar.setBounds(1150,yInicial+ 575, 200, 100);
         botonEnviar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                origen = textoOrigen.getText();
+                origen = textoYear.getText();
                 destino = textoDestino.getText();
                 hora = Integer.parseInt(textoHora.getText());
                 minuto = Integer.parseInt(textoMinutos.getText());
+                year = Integer.parseInt(textoYear.getText());
+                month = Integer.parseInt(textoMes.getText());
+                day = Integer.parseInt(textoDia.getText());
                 capacidadPorPiso = (int) comboBoxCapacidadPorPiso.getSelectedItem();
                 cantidadDePisos = (int) comboBoxCantidadDePisos.getSelectedItem();
                 duracion = Integer.parseInt(textoDuracion.getText());
 
                 boolean estadoenvio = revisarEnvio();
                 if(estadoenvio){
-                    Recorrido recorrido = new Recorrido(origen, destino, hora, minuto);
+                    Recorrido recorrido = new Recorrido(origen, destino, LocalDateTime.of(year,month,day,hora,minuto));
                     Bus.BusBuilder busBuilder = new Bus.BusBuilder(recorrido);
                     panelMenuInicial.getPanelPrincipal().agregarBus(busBuilder.buildBus());
                     generarMensajeCreacionCorrecta();
