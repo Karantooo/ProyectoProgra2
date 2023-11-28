@@ -9,6 +9,29 @@ public class PanelMenuInicial extends JPanel {
         this.setLayout(new GridLayout(1,2));
         this.setPreferredSize(new Dimension(1400,800));
 
+        generarNuevoMenuInicial();
+    }
+
+    public void generarPanelCrearViaje() {
+        this.removeAll();
+        this.add(new PanelCrearViaje(this));
+        repaint();
+        revalidate();
+    }
+
+    public void generarPanelReservaAsiento() {
+        this.removeAll();
+        this.add(new PanelReservarAsiento());
+        repaint();
+        revalidate();
+    }
+
+    public void generarNuevoMenuInicial(){
+        this.removeAll();
+
+        this.setLayout(new GridLayout(1,2));
+        this.setPreferredSize(new Dimension(1400,800));
+
         JButton botonCrearViaje = new JButton("Crear Viaje");
         JButton botonReservarAsiento = new JButton("Reservar Asiento");
         botonCrearViaje.setBackground(Color.CYAN);
@@ -29,18 +52,6 @@ public class PanelMenuInicial extends JPanel {
 
         this.add(botonCrearViaje);
         this.add(botonReservarAsiento);
-    }
-
-    public void generarPanelCrearViaje() {
-        this.removeAll();
-        this.add(new PanelCrearViaje());
-        repaint();
-        revalidate();
-    }
-
-    public void generarPanelReservaAsiento() {
-        this.removeAll();
-        this.add(new PanelReservarAsiento());
         repaint();
         revalidate();
     }

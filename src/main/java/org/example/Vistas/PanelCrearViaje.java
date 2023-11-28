@@ -2,9 +2,14 @@ package org.example.Vistas;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PanelCrearViaje extends JPanel {
-    public PanelCrearViaje(){
+
+    private PanelMenuInicial panelMenuInicial;
+    public PanelCrearViaje(PanelMenuInicial panelMenuInicial){
+        this.panelMenuInicial = panelMenuInicial;
         this.setBackground(Color.cyan);
         this.setLayout(null);
 
@@ -90,5 +95,87 @@ public class PanelCrearViaje extends JPanel {
         comboBoxCantidadDePisos.addItem(2);
         comboBoxCantidadDePisos.setBounds(150, yInicial + 400, 150,50);
         this.add(comboBoxCantidadDePisos);
+
+        //JButton
+        JButton botonEnviar = new JButton("Crear");
+        botonEnviar.setBounds(1150,yInicial+ 525, 200, 100);
+        botonEnviar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean estadoenvio = revisarEnvio(textoHora.getText(), textoMinutos.getText(), textoDuracion.getText());
+                if(estadoenvio){
+                    generarMensajeCreacionCorrecta();
+                }
+                else generarMensajeCreacionIncorrecta();
+            }
+        });
+        this.add(botonEnviar);
+    }
+
+    private boolean revisarEnvio(String horaObtenida, String minutoObtenido, String duracionObtenida){
+        int hora = Integer.parseInt(horaObtenida);
+        int minuto = Integer.parseInt(minutoObtenido);
+        int duracion = Integer.parseInt(duracionObtenida);
+        if(hora < 0 | hora > 24) return false;
+        if(minuto < 0 | minuto > 60) return false;
+        if(duracion < 0) return false;
+        return true;
+    }
+
+    private void generarMensajeCreacionCorrecta() {
+        this.removeAll();
+
+        //Jlabel
+        JLabel labelCreacionCorrecta = new JLabel("El viaje se creo exitosamente!");
+        labelCreacionCorrecta.setBounds(0, 0, getWidth(), getHeight());
+        labelCreacionCorrecta.setFont(new Font("SansSerif", Font.PLAIN, 30));
+        labelCreacionCorrecta.setHorizontalAlignment(SwingConstants.CENTER);
+        labelCreacionCorrecta.setVerticalAlignment(SwingConstants.CENTER);
+        this.add(labelCreacionCorrecta);
+
+        //JButtons
+        JButton botonVolver = new JButton("Volver");
+        botonVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                volverMenuPrincipal();
+            }
+        });
+        botonVolver.setBounds(1150,625, 200, 100);
+        this.add(botonVolver);
+        repaint();
+        revalidate();
+    }
+
+    private void generarMensajeCreacionIncorrecta() {
+        this.removeAll();
+
+        //Jlabel
+        JLabel labelCreacionInCorrecta = new JLabel("El viaje no se pudo crear!");
+        labelCreacionInCorrecta.setBounds(0, 0, getWidth(), getHeight());
+        labelCreacionInCorrecta.setFont(new Font("SansSerif", Font.PLAIN, 30));
+        labelCreacionInCorrecta.setHorizontalAlignment(SwingConstants.CENTER);
+        labelCreacionInCorrecta.setVerticalAlignment(SwingConstants.CENTER);
+        this.add(labelCreacionInCorrecta);
+
+        //JButtons
+        JButton botonVolver = new JButton("Volver");
+        botonVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                volverMenuPrincipal();
+            }
+        });
+        botonVolver.setBounds(1150,625, 200, 100);
+        this.add(botonVolver);
+        repaint();
+        revalidate();
+    }
+
+    private void volverMenuPrincipal(){
+        this.remove(this);
+        panelMenuInicial.generarNuevoMenuInicial();
+        this.repaint();
+        this.revalidate();
     }
 }
