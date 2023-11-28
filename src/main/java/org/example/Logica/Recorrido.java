@@ -45,4 +45,16 @@ public class Recorrido {
     public void setMinutos(int minutos) {
         this.minutos = minutos;
     }
+
+    @Override
+    public String toString() {
+        String descripcionRecorrido = new String();
+        descripcionRecorrido += "\nOrigen: " + origen;
+        descripcionRecorrido += "\nDestino: " + destino;
+        descripcionRecorrido += "\nHora: " + hora;
+        descripcionRecorrido += "\nMinutos: " + minutos;
+        descripcionRecorrido += "\nDuracion: " + duracion;
+
+        return descripcionRecorrido;
+    }
 }

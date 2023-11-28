@@ -22,4 +22,14 @@ public class Bus {
     public Recorrido getRecorrido() {
         return recorrido;
     }
+
+    @Override
+    public String toString() {
+        String descripcionBus = new String();
+        descripcionBus += "Pisos: " + pisos;
+        descripcionBus += "\nAsientos por piso: " + asientosPorPiso;
+        descripcionBus += "\nRecorrido: " + recorrido.toString();
+
+        return descripcionBus;
+    }
 }
