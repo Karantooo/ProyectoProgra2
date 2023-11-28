@@ -20,4 +20,7 @@ public class PanelPrincipal extends JPanel {
         busArrayList.add(bus);
     }
 
+    public ArrayList<Bus> getBusArrayList() {
+        return busArrayList;
+    }
 }

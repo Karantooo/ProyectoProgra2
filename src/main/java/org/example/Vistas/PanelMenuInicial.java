@@ -23,7 +23,7 @@ public class PanelMenuInicial extends JPanel {
 
     public void generarPanelReservaAsiento() {
         this.removeAll();
-        this.add(new PanelReservarAsiento());
+        this.add(new PanelReservarAsiento(this));
         repaint();
         revalidate();
     }
