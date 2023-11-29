@@ -7,10 +7,10 @@ import java.time.LocalTime;
 public class Recorrido {
     private String origen;
     private String destino;
-    private LocalTime duracion;
+    private int duracion;
     private LocalDateTime fechaYHora;
 
-    public Recorrido(String origen, String destino, LocalDateTime fechaYHora, LocalTime duracion) {
+    public Recorrido(String origen, String destino, LocalDateTime fechaYHora, int duracion) {
         this.origen = origen;
         this.destino = destino;
 
@@ -40,14 +40,14 @@ public class Recorrido {
 
 
     public int getDuracionMinutos() {
-        return duracion.getMinute();
+        return duracion % 60;
     }
     public int getDuracionHoras() {
-        return duracion.getHour();
+        return duracion / 60;
     }
 
     public int getDuracionTotalEnMin(){
-        return duracion.getHour() * 60 + duracion.getMinute();
+        return duracion;
     }
 
     public int getYear(){
