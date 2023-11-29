@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -172,7 +173,7 @@ public class PanelCrearViaje extends JPanel {
 
                 boolean estadoenvio = revisarEnvio();
                 if(estadoenvio){
-                    Recorrido recorrido = new Recorrido(origen, destino, LocalDateTime.of(year,month,day,hora,minuto), LocalTime.of(duracion / 60, duracion%60));
+                    Recorrido recorrido = new Recorrido(origen, destino, LocalDateTime.of(year,month,day,hora,minuto), duracion);
                     Bus.BusBuilder busBuilder = new Bus.BusBuilder(recorrido);
                     busBuilder.buildPisos(cantidadDePisos);
                     busBuilder.buildAsientosPorPiso(capacidadPorPiso);
@@ -199,6 +200,10 @@ public class PanelCrearViaje extends JPanel {
         if(hora < 0 | hora > 24) return false;
         if(minuto < 0 | minuto > 60) return false;
         if(duracion < 0) return false;
+        if(contieneNumero(origen) | contieneNumero(destino)) return false;
+        if(day < 0 | day > 31) return false;
+        if(month < 0 | month > 12) return false;
+        if(year < 0) return false;
         return true;
     }
 
@@ -258,4 +263,14 @@ public class PanelCrearViaje extends JPanel {
         this.repaint();
         this.revalidate();
     }
+
+    private boolean contieneNumero(String s) {
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isDigit(s.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

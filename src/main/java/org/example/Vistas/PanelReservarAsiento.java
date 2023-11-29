@@ -66,9 +66,9 @@ public class PanelReservarAsiento extends JPanel {
     private void generarViajesPredeterminados() {
         if(busArrayList.size() >= 3) return;
         DirectorBus directorBus = new DirectorBus();
-        busArrayList.add(directorBus.buildGrande(new Recorrido("Stgo", "Afta", LocalDateTime.of(2024,1,27,15,30), LocalTime.of(18,45))));
-        busArrayList.add(directorBus.buildChico(new Recorrido("Ccp", "Stgo", LocalDateTime.of(2024,1,13,12,0), LocalTime.of(6,0))));
-        busArrayList.add(directorBus.buildMediano(new Recorrido("Chiguayante", "Stgo", LocalDateTime.of(2023,12,24,12,30), LocalTime.of(6,30))));
+        busArrayList.add(directorBus.buildGrande(new Recorrido("Stgo", "Afta", LocalDateTime.of(2024,1,27,15,30), 1125)));
+        busArrayList.add(directorBus.buildChico(new Recorrido("Ccp", "Stgo", LocalDateTime.of(2024,1,13,12,0), 360)));
+        busArrayList.add(directorBus.buildMediano(new Recorrido("Chiguayante", "Stgo", LocalDateTime.of(2023,12,24,12,30),390)));
     }
 
     private void volverMenuPrincipal(){
