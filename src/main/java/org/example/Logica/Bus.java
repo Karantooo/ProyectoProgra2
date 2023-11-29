@@ -6,14 +6,14 @@ public class Bus {
     private int pisos;
     private int asientosPorPiso;
     private Recorrido recorrido;
-    private ArrayList<CorridaAsientos> corridaAsientos;
+    private ArrayList<CorridaAsientos> corridaAsientosPorPiso;
 
     private Bus(int pisos, int asientosPorPiso, Recorrido recorrido) {
         this.pisos = pisos;
         this.asientosPorPiso = asientosPorPiso;
         this.recorrido = recorrido;
         for (int i = 0; i < pisos; i++){
-            corridaAsientos.add(new CorridaAsientos(asientosPorPiso));
+            corridaAsientosPorPiso.add(new CorridaAsientos(asientosPorPiso));
         }
 
     }
@@ -39,6 +39,11 @@ public class Bus {
 
         return descripcionBus;
     }
+
+    public ArrayList<CorridaAsientos> getCorridaAsientosPorPiso() {
+        return corridaAsientosPorPiso;
+    }
+
     public static class BusBuilder {
         private int pisos;
         private int asientosPorPiso;

@@ -7,7 +7,7 @@ public class DirectorAsiento {
     }
 
     public Asiento buildPremium(EstadoAsiento estadoAsiento, Pasajero pasajero, String codigoAsiento){
-        Asiento.Builder builder = new Asiento.Builder(estadoAsiento, pasajero, codigoAsiento);
+        Asiento.Builder builder = new Asiento.Builder(estadoAsiento, codigoAsiento);
         builder.setSistemaEntretenimiento(false);
         builder.setReclinable(true);
         builder.setDescripcionAsiento("Asiento Premium");
@@ -15,7 +15,7 @@ public class DirectorAsiento {
     }
 
     public Asiento buildEconomico(EstadoAsiento estadoAsiento, Pasajero pasajero, String codigoAsiento){
-        Asiento.Builder builder = new Asiento.Builder(estadoAsiento, pasajero, codigoAsiento);
+        Asiento.Builder builder = new Asiento.Builder(estadoAsiento, codigoAsiento);
         builder.setSistemaEntretenimiento(false);
         builder.setReclinable(false);
         builder.setDescripcionAsiento("Asiento Economico");
@@ -23,7 +23,7 @@ public class DirectorAsiento {
     }
 
     public Asiento buildEjecutivo(EstadoAsiento estadoAsiento, Pasajero pasajero, String codigoAsiento){
-        Asiento.Builder builder = new Asiento.Builder(estadoAsiento, pasajero, codigoAsiento);
+        Asiento.Builder builder = new Asiento.Builder(estadoAsiento, codigoAsiento);
         builder.setSistemaEntretenimiento(true);
         builder.setReclinable(true);
         builder.setDescripcionAsiento("Asiento Ejecutivo");

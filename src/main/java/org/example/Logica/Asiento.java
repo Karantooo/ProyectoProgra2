@@ -59,9 +59,9 @@ public class Asiento {
         private Boolean sistemaEntretenimiento;
         private String descripcionAsiento;
 
-        public Builder(EstadoAsiento estadoAsiento, Pasajero pasajero, String codigoAsiento){
+        public Builder(EstadoAsiento estadoAsiento, String codigoAsiento){
             this.codigoAsiento = codigoAsiento;
-            this.pasajero = pasajero;
+            this.pasajero = null;
             this.codigoAsiento = codigoAsiento;
             this.descripcionAsiento = "";
         }
@@ -78,6 +78,9 @@ public class Asiento {
             descripcionAsiento = descripcion;
         }
 
+        public void setPasajero(Pasajero pasajero) {
+            this.pasajero = pasajero;
+        }
 
         public Asiento buildAsiento(){
             Asiento asiento = new Asiento(estadoAsiento, pasajero, codigoAsiento, reclinable,
