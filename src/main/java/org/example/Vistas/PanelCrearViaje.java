@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class PanelCrearViaje extends JPanel {
     private String origen;
@@ -165,7 +166,7 @@ public class PanelCrearViaje extends JPanel {
 
                 boolean estadoenvio = revisarEnvio();
                 if(estadoenvio){
-                    Recorrido recorrido = new Recorrido(origen, destino, LocalDateTime.of(year,month,day,hora,minuto));
+                    Recorrido recorrido = new Recorrido(origen, destino, LocalDateTime.of(year,month,day,hora,minuto), LocalTime.of(duracion / 60, duracion%60));
                     Bus.BusBuilder busBuilder = new Bus.BusBuilder(recorrido);
                     panelMenuInicial.getPanelPrincipal().agregarBus(busBuilder.buildBus());
                     generarMensajeCreacionCorrecta();

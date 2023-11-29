@@ -2,18 +2,19 @@ package org.example.Logica;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Recorrido {
     private String origen;
     private String destino;
-    private int duracion;
+    private LocalTime duracion;
     private LocalDateTime fechaYHora;
 
-    public Recorrido(String origen, String destino, LocalDateTime fechaYHora) {
+    public Recorrido(String origen, String destino, LocalDateTime fechaYHora, LocalTime duracion) {
         this.origen = origen;
         this.destino = destino;
 
-        this.duracion = fechaYHora.getHour() * 60 + fechaYHora.getMinute();
+        this.duracion = duracion;
 
         this.fechaYHora = fechaYHora;
     }
@@ -38,9 +39,17 @@ public class Recorrido {
     }
 
 
-    public int getDuracion() {
-        return duracion;
+    public int getDuracionMinutos() {
+        return duracion.getMinute();
     }
+    public int getDuracionHoras() {
+        return duracion.getHour();
+    }
+
+    public int getDuracionTotalEnMin(){
+        return duracion.getHour() * 60 + duracion.getMinute();
+    }
+
     public int getYear(){
         return fechaYHora.getYear();
     }
