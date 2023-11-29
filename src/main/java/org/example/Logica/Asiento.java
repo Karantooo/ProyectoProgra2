@@ -101,7 +101,7 @@ public class Asiento {
          * @param codigoAsiento
          */
         public Builder(EstadoAsiento estadoAsiento, String codigoAsiento){
-            this.codigoAsiento = codigoAsiento;
+            this.estadoAsiento = estadoAsiento;
             this.pasajero = null;
             this.codigoAsiento = codigoAsiento;
             this.descripcionAsiento = "";
