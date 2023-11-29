@@ -18,7 +18,7 @@ class BusTest {
     @Test
     void verificarPatronBuild(){
         LocalDateTime fechaYHora = LocalDateTime.of(2023, 1, 1, 1, 1);
-        LocalTime duracion = LocalTime.of(13, 4);
+        int duracion = 360;
         Recorrido recorrido = new Recorrido("Puerto Montt", "Concepcion", fechaYHora, duracion);
          Bus.BusBuilder creadorBus = new Bus.BusBuilder(recorrido);
          creadorBus.buildPisos(3);

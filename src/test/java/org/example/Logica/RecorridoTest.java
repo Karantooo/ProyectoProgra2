@@ -12,13 +12,13 @@ class RecorridoTest {
     Recorrido recorrido1;
     @BeforeEach
     void setUp() {
-        recorrido1 = new Recorrido("Concepcion", "Santiago", LocalDateTime.of(2021, 2, 2, 2,2 ));
+        recorrido1 = new Recorrido("Concepcion", "Santiago", LocalDateTime.of(2021, 2, 2, 2,2 ), 360);
     }
 
     @Test
     void testDuracionViaje(){
 
-        assertEquals(recorrido1.getDuracion(), 122);
+        assertEquals(recorrido1.getDuracionTotalEnMin(), 360);
 
     }
 
