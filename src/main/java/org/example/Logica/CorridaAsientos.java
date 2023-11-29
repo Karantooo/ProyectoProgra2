@@ -33,4 +33,20 @@ public class CorridaAsientos {
             }
         }
     }
+
+    public Asiento getAsiento(int x, int y){
+        return asientos[x][y];
+    }
+
+    public int getAsientosPremium() {
+        return asientosPremium;
+    }
+
+    public int getAsientosEconomicos() {
+        return asientosEconomicos;
+    }
+
+    public int getAsientosEjecutivo() {
+        return asientosEjecutivo;
+    }
 }
