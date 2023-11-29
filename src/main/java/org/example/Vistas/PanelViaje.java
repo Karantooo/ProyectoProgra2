@@ -15,7 +15,8 @@ public class PanelViaje extends JPanel {
         JTextArea informacionViaje = new JTextArea("Origen: " + bus.getRecorrido().getOrigen());
         informacionViaje.setBackground(Color.cyan);
         informacionViaje.setText(informacionViaje.getText() + "\nDestino: " + bus.getRecorrido().getDestino());
-        informacionViaje.setText(informacionViaje.getText() + "\n" + bus.getRecorrido().getHora() + ":" + bus.getRecorrido().getMinutos());
+        informacionViaje.setText(informacionViaje.getText() + "\nFecha: " + bus.getRecorrido().getDay() + "-" + bus.getRecorrido().getMonth() + "-" + bus.getRecorrido().getYear());
+        informacionViaje.setText(informacionViaje.getText() + "\nHora: " + bus.getRecorrido().getHora() + ":" + bus.getRecorrido().getMinutos());
         informacionViaje.setFont(new Font("SansSerif", Font.PLAIN, 15));
         informacionViaje.setLineWrap(true);
         informacionViaje.setWrapStyleWord(true);

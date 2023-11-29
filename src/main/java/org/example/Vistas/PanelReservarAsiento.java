@@ -21,7 +21,7 @@ public class PanelReservarAsiento extends JPanel {
         this.busArrayList = panelMenuInicial.getPanelPrincipal().getBusArrayList();
         generarViajesPredeterminados();
         generarViajesPredeterminados();
-        this.setLayout(null);
+        this.setLayout(new GridLayout(2,1));
         this.setBackground(Color.orange);
 
         JPanel panelMitadSuperior = new JPanel(new GridLayout(1,busArrayList.size()));
@@ -38,7 +38,7 @@ public class PanelReservarAsiento extends JPanel {
             });
             panelMitadSuperior.add(panelViaje);
         }
-        panelMitadSuperior.setBounds(150, 150, getWidth() / 2, getHeight() / 2);
+        panelMitadSuperior.setBounds(150, 150, getWidth(), getHeight() / 2);
         this.add(panelMitadSuperior);
     }
     private void generarViajesPredeterminados() {

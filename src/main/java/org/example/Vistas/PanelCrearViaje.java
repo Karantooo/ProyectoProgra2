@@ -153,7 +153,7 @@ public class PanelCrearViaje extends JPanel {
         botonEnviar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                origen = textoYear.getText();
+                origen = textoOrigen.getText();
                 destino = textoDestino.getText();
                 hora = Integer.parseInt(textoHora.getText());
                 minuto = Integer.parseInt(textoMinutos.getText());
@@ -168,6 +168,8 @@ public class PanelCrearViaje extends JPanel {
                 if(estadoenvio){
                     Recorrido recorrido = new Recorrido(origen, destino, LocalDateTime.of(year,month,day,hora,minuto), LocalTime.of(duracion / 60, duracion%60));
                     Bus.BusBuilder busBuilder = new Bus.BusBuilder(recorrido);
+                    busBuilder.buildPisos(cantidadDePisos);
+                    busBuilder.buildAsientosPorPiso(capacidadPorPiso);
                     panelMenuInicial.getPanelPrincipal().agregarBus(busBuilder.buildBus());
                     generarMensajeCreacionCorrecta();
                 }
