@@ -7,7 +7,7 @@ public class Recorrido {
     private String origen;
     private String destino;
     private int duracion;
-    LocalDateTime fechaYHora;
+    private LocalDateTime fechaYHora;
 
     public Recorrido(String origen, String destino, LocalDateTime fechaYHora) {
         this.origen = origen;
@@ -40,6 +40,15 @@ public class Recorrido {
 
     public int getDuracion() {
         return duracion;
+    }
+    public int getYear(){
+        return fechaYHora.getYear();
+    }
+    public int getMonth(){
+        return fechaYHora.getMonthValue();
+    }
+    public int getDay(){
+        return fechaYHora.getDayOfMonth();
     }
 
     @Override
