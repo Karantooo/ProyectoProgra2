@@ -32,6 +32,12 @@ public class PanelCrearViaje extends JPanel {
         int yInicial = 50;
 
         //JLabels
+        JLabel labelTitulo = new JLabel("Ingrese los datos del viaje");
+        labelTitulo.setFont(new Font("SansSerif", Font.PLAIN, 40));
+        labelTitulo.setBounds(200,0,1000,50);
+        labelTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        labelTitulo.setVerticalAlignment(SwingConstants.CENTER);
+        this.add(labelTitulo);
         JLabel labelOrigen = new JLabel("Origen: ");
         labelOrigen.setFont(new Font("SansSerif", Font.PLAIN, 30));
         labelOrigen.setBounds(0,yInicial,150,50);
@@ -177,6 +183,16 @@ public class PanelCrearViaje extends JPanel {
             }
         });
         this.add(botonEnviar);
+
+        JButton botonVolver = new JButton("Volver");
+        botonVolver.setBounds(10,yInicial+ 650, 200, 50);
+        botonVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                volverMenuPrincipal();
+            }
+        });
+        this.add(botonVolver);
     }
 
     private boolean revisarEnvio(){
