@@ -1,5 +1,7 @@
 package org.example.Logica;
 
+import java.util.ArrayList;
+
 public class Bus {
     private int pisos;
     private int asientosPorPiso;
@@ -9,6 +11,7 @@ public class Bus {
         this.pisos = pisos;
         this.asientosPorPiso = asientosPorPiso;
         this.recorrido = recorrido;
+
     }
 
     public int getPisos() {

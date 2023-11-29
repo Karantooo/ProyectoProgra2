@@ -6,14 +6,17 @@ public class Asiento {
     private String codigoAsiento;
     private Boolean reclinable;
     private Boolean sistemaEntretenimiento;
-
+    private String descripcionAsiento;
 
 
     private Asiento(EstadoAsiento estadoAsiento, Pasajero pasajero, String codigoAsiento, Boolean reclinable,
-     Boolean sistemaEntretenimiento){
+     Boolean sistemaEntretenimiento, String descripcionAsiento){
         this.estadoAsiento = estadoAsiento;
         this.pasajero = pasajero;
         this.codigoAsiento = codigoAsiento;
+        this.descripcionAsiento = descripcionAsiento;
+        this.reclinable = reclinable;
+        this.sistemaEntretenimiento = sistemaEntretenimiento;
     }
 
     public EstadoAsiento getEstadoAsiento() {
@@ -40,17 +43,27 @@ public class Asiento {
         this.estadoAsiento = estadoAsiento;
     }
 
+    public void setPasajero(Pasajero pasajero) {
+        this.pasajero = pasajero;
+    }
+
+    public String getDescripcionAsiento() {
+        return descripcionAsiento;
+    }
+
     public static class Builder{
         private EstadoAsiento estadoAsiento;
         private Pasajero pasajero;
         private String codigoAsiento;
         private Boolean reclinable;
         private Boolean sistemaEntretenimiento;
+        private String descripcionAsiento;
 
         public Builder(EstadoAsiento estadoAsiento, Pasajero pasajero, String codigoAsiento){
             this.codigoAsiento = codigoAsiento;
             this.pasajero = pasajero;
             this.codigoAsiento = codigoAsiento;
+            this.descripcionAsiento = "";
         }
 
         public void setReclinable(Boolean reclinable) {
@@ -61,15 +74,17 @@ public class Asiento {
             this.sistemaEntretenimiento = sistemaEntretenimiento;
         }
 
+        public void setDescripcionAsiento(String descripcion){
+            descripcionAsiento = descripcion;
+        }
+
+
         public Asiento buildAsiento(){
-            return new Asiento(estadoAsiento, pasajero, codigoAsiento, reclinable,
-                                sistemaEntretenimiento);
+            Asiento asiento = new Asiento(estadoAsiento, pasajero, codigoAsiento, reclinable,
+                    sistemaEntretenimiento, descripcionAsiento);
+            return asiento;
         }
     }
 
 
-    /*
-    EstadoAsiento mostrarEstadoAsiento();
-    Pasajero mostrarPasajero();
-    String informacionAsiento();*/
 }
