@@ -12,6 +12,7 @@ public class Bus {
         this.pisos = pisos;
         this.asientosPorPiso = asientosPorPiso;
         this.recorrido = recorrido;
+        corridaAsientosPorPiso = new ArrayList<CorridaAsientos>();
         for (int i = 0; i < pisos; i++){
             corridaAsientosPorPiso.add(new CorridaAsientos(asientosPorPiso));
         }
