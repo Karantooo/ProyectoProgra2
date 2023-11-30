@@ -7,12 +7,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AsientoTest {
     Asiento asiento1;
+    Asiento asiento2;
     @BeforeEach
     void setUp() {
         Asiento.Builder builder = new Asiento.Builder(EstadoAsiento.OCUPADO, "1-3");
         builder.setSistemaEntretenimiento(true);
         asiento1 = builder.buildAsiento();
-
+        Asiento.Builder builder2 = new Asiento.Builder(EstadoAsiento.DISPONIBLE, "4-1");
+        builder2.setDescripcionAsiento("Descripcion generica");
+        builder2.setReclinable(true);
+        builder2.setPasajero(new Pasajero("Juan", "Perez", "Scotiabank", "41273"));
+        asiento2 = builder2.buildAsiento();
     }
 
     @Test
@@ -24,7 +29,14 @@ class AsientoTest {
         assertEquals(false, asiento1.getReclinable());
     }
 
-
+    @Test
+    void verificacionSeteoCorrectoVariablesAsiento2(){
+        assertEquals("4-1", asiento1.getCodigoAsiento());
+        assertEquals(EstadoAsiento.DISPONIBLE, asiento1.getEstadoAsiento());
+        assertEquals("Juan", asiento1.getPasajero().getNombre());
+        assertEquals(false, asiento1.getSistemaEntretenimiento());
+        assertEquals(true, asiento1.getReclinable());
+    }
 
 
 }
