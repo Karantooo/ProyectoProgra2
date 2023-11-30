@@ -7,14 +7,17 @@ public class CorridaAsientos {
     private int asientosPremium;
     private int asientosEconomicos;
     private int asientosEjecutivo;
+    private int filas;
+    private int columnas;
+
 
     public CorridaAsientos(int cantidadAsientos) {
         asientosEjecutivo = (int)(cantidadAsientos *  0.1);
         asientosPremium = (int)(cantidadAsientos *  0.2);
         asientosEconomicos = cantidadAsientos - (asientosPremium +  asientosEjecutivo);
 
-        int filas = cantidadAsientos/4;
-        int columnas = 4;
+        filas = cantidadAsientos/4;
+        columnas = 4;
         asientos = new Asiento[filas][columnas];
 
         int cantidadAsientosCreados = 0;
@@ -48,5 +51,13 @@ public class CorridaAsientos {
 
     public int getAsientosEjecutivo() {
         return asientosEjecutivo;
+    }
+
+    public int getFilas() {
+        return filas;
+    }
+
+    public int getColumnas() {
+        return columnas;
     }
 }
