@@ -24,11 +24,11 @@ public class CorridaAsientos {
                 DirectorAsiento director = new DirectorAsiento();
                 String codigoAsiento = new String(i + "-" + j);
                 if (cantidadAsientosCreados < asientosEjecutivo)
-                    asientos[i][j] = director.buildEjecutivo(EstadoAsiento.DISPONIBLE, null, codigoAsiento);
+                    asientos[i][j] = director.buildEjecutivo(EstadoAsiento.DISPONIBLE, codigoAsiento, 2000);
                 else if (cantidadAsientosCreados < asientosPremium + asientosEjecutivo)
-                    asientos[i][j] = director.buildPremium(EstadoAsiento.DISPONIBLE, null, codigoAsiento);
+                    asientos[i][j] = director.buildPremium(EstadoAsiento.DISPONIBLE, codigoAsiento, 1500);
                 else
-                    asientos[i][j] = director.buildEconomico(EstadoAsiento.DISPONIBLE, null, codigoAsiento);
+                    asientos[i][j] = director.buildEconomico(EstadoAsiento.DISPONIBLE, codigoAsiento, 1000);
                 cantidadAsientosCreados++;
             }
         }
