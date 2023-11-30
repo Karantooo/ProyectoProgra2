@@ -14,6 +14,7 @@ public class Asiento {
     private Boolean reclinable;
     private Boolean sistemaEntretenimiento;
     private String descripcionAsiento;
+    private int precioAsiento;
 
     /**
      * Constructor de la clase privado por defecto.
@@ -26,7 +27,7 @@ public class Asiento {
      * @param descripcionAsiento
      */
     private Asiento(EstadoAsiento estadoAsiento, Pasajero pasajero, String codigoAsiento, Boolean reclinable,
-     Boolean sistemaEntretenimiento, String descripcionAsiento){
+     Boolean sistemaEntretenimiento, String descripcionAsiento, int precioAsiento){
         this.estadoAsiento = estadoAsiento;
         this.pasajero = pasajero;
         this.codigoAsiento = codigoAsiento;
@@ -93,6 +94,7 @@ public class Asiento {
         private Boolean reclinable;
         private Boolean sistemaEntretenimiento;
         private String descripcionAsiento;
+        private int asientoPrecio;
 
         /**
          * Patron que instancia las condiciones obligatorias para todo asiento.
@@ -100,13 +102,14 @@ public class Asiento {
          * @param estadoAsiento
          * @param codigoAsiento
          */
-        public Builder(EstadoAsiento estadoAsiento, String codigoAsiento){
+        public Builder(EstadoAsiento estadoAsiento, String codigoAsiento, int precioAsiento){
             this.estadoAsiento = estadoAsiento;
             this.pasajero = null;
             this.codigoAsiento = codigoAsiento;
             this.descripcionAsiento = "";
             this.reclinable = false;
             this.sistemaEntretenimiento = false;
+            this.asientoPrecio = precioAsiento;
         }
 
         /**
@@ -147,7 +150,7 @@ public class Asiento {
          */
         public Asiento buildAsiento(){
             Asiento asiento = new Asiento(estadoAsiento, pasajero, codigoAsiento, reclinable,
-                    sistemaEntretenimiento, descripcionAsiento);
+                    sistemaEntretenimiento, descripcionAsiento, asientoPrecio);
             return asiento;
         }
     }

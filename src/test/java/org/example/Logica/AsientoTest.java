@@ -10,10 +10,10 @@ class AsientoTest {
     Asiento asiento2;
     @BeforeEach
     void setUp() {
-        Asiento.Builder builder = new Asiento.Builder(EstadoAsiento.OCUPADO, "1-3");
+        Asiento.Builder builder = new Asiento.Builder(EstadoAsiento.OCUPADO, "1-3", 200);
         builder.setSistemaEntretenimiento(true);
         asiento1 = builder.buildAsiento();
-        Asiento.Builder builder2 = new Asiento.Builder(EstadoAsiento.DISPONIBLE, "4-1");
+        Asiento.Builder builder2 = new Asiento.Builder(EstadoAsiento.DISPONIBLE, "4-1", 1);
         builder2.setDescripcionAsiento("Descripcion generica");
         builder2.setReclinable(true);
         builder2.setPasajero(new Pasajero("Juan", "Perez", "Scotiabank", "41273"));
