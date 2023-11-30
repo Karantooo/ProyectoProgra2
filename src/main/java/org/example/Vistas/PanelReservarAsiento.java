@@ -6,12 +6,8 @@ import org.example.Logica.Recorrido;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class PanelReservarAsiento extends JPanel {
@@ -27,21 +23,35 @@ public class PanelReservarAsiento extends JPanel {
 
         JPanel panelMitadSuperior = new JPanel(new GridLayout(1,busArrayList.size()));
         for(int i = 0; i < busArrayList.size(); i++){
-            PanelViaje panelViaje = new PanelViaje(busArrayList.get(i));
-            panelViaje.setBounds(300 * i, 0, 300, 300);
-            int finalI = i;
-            panelViaje.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    super.mouseClicked(e);
-                    generarPanelSeleccionAsiento(busArrayList.get(finalI));
-                }
-            });
+            PanelViaje panelViaje = getPanelViaje(i);
             panelMitadSuperior.add(panelViaje);
         }
         panelMitadSuperior.setBounds(150, 150, getWidth(), getHeight() / 2);
         this.add(panelMitadSuperior);
 
+        JPanel panelMitadInferior = getPanelMitadSuperior();
+
+        this.add(panelMitadInferior);
+    }
+
+    private PanelViaje getPanelViaje(int i) {
+        PanelViaje panelViaje = new PanelViaje(busArrayList.get(i));
+        panelViaje.setBounds(300 * i, 0, 300, 300);
+
+        int finalI = i;
+        JButton botonSeleccionarViaje = new JButton("Presione aqui para seleccionar este viaje");
+        botonSeleccionarViaje.setBackground(Color.cyan);
+        botonSeleccionarViaje.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                generarPanelSeleccionAsiento(busArrayList.get(finalI));
+            }
+        });
+        panelViaje.add(botonSeleccionarViaje);
+        return panelViaje;
+    }
+
+    private JPanel getPanelMitadSuperior() {
         JPanel panelMitadInferior = new JPanel(null);
         panelMitadInferior.setBackground(Color.orange);
         JLabel labelEleccion = new JLabel("Seleccione el viaje que desea comprar");
@@ -60,9 +70,9 @@ public class PanelReservarAsiento extends JPanel {
         });
         botonVolver.setBounds(0, 300, 200, 50);
         panelMitadInferior.add(botonVolver);
-
-        this.add(panelMitadInferior);
+        return panelMitadInferior;
     }
+
     private void generarViajesPredeterminados() {
         if(busArrayList.size() >= 3) return;
         DirectorBus directorBus = new DirectorBus();
@@ -78,11 +88,27 @@ public class PanelReservarAsiento extends JPanel {
         this.revalidate();
     }
 
+    private void volverPanelReservarAsiento() {
+        this.removeAll();
+        this.add(new PanelReservarAsiento(panelMenuInicial));
+        this.repaint();
+        this.revalidate();
+    }
+
     private void generarPanelSeleccionAsiento(Bus bus) {
         this.removeAll();
         this.setLayout(new GridLayout(1,2));
 
         PanelViaje panelViaje = new PanelViaje(bus);
+        JButton botonVolver = new JButton("Volver");
+        botonVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                volverPanelReservarAsiento();
+            }
+        });
+        botonVolver.setBackground(Color.cyan);
+        panelViaje.add(botonVolver);
         this.add(panelViaje);
 
         for(int i = 0; i < bus.getPisos(); i++){
@@ -91,4 +117,5 @@ public class PanelReservarAsiento extends JPanel {
         this.repaint();
         this.revalidate();
     }
+
 }

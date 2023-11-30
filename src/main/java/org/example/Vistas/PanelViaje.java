@@ -12,6 +12,7 @@ public class PanelViaje extends JPanel {
         this.bus = bus;
         this.setBackground(Color.cyan);
         this.setBorder(new LineBorder(Color.BLACK, 2));
+        this.setLayout(new GridLayout(2,1));
         JTextArea informacionViaje = new JTextArea("Origen: " + bus.getRecorrido().getOrigen());
         informacionViaje.setBackground(Color.cyan);
         informacionViaje.setText(informacionViaje.getText() + "\nDestino: " + bus.getRecorrido().getDestino());
