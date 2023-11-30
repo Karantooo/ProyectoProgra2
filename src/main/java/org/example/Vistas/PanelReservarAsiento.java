@@ -5,6 +5,7 @@ import org.example.Logica.DirectorBus;
 import org.example.Logica.Recorrido;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.time.LocalDateTime;
@@ -111,8 +112,19 @@ public class PanelReservarAsiento extends JPanel {
         panelViaje.add(botonVolver);
         this.add(panelViaje);
 
+        JPanel panelPisos = new JPanel(new GridLayout(1,bus.getPisos()));
         for(int i = 0; i < bus.getPisos(); i++){
-            this.add(new PanelCorridaAsientos(bus.getCorridaAsientosPorPiso().get(i)));
+            JPanel panelAsientos = new JPanel(new BorderLayout());
+            panelAsientos.setBorder(new LineBorder(Color.blue, 2));
+
+            JLabel labelPiso = new JLabel("Piso: " + (i + 1));
+            labelPiso.setHorizontalAlignment(SwingConstants.CENTER);
+            labelPiso.setVerticalAlignment(SwingConstants.CENTER);
+            panelAsientos.add(labelPiso, BorderLayout.NORTH);
+
+            panelAsientos.add(new PanelCorridaAsientos(bus.getCorridaAsientosPorPiso().get(i)), BorderLayout.CENTER);
+            panelPisos.add(panelAsientos);
+            this.add(panelPisos);
         }
         this.repaint();
         this.revalidate();
