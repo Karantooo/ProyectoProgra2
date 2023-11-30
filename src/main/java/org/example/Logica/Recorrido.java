@@ -4,11 +4,23 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * Clase para manejar los recorridos que va a tomar el bus.
+ * @author Benjamin Espinoza
+ */
 public class Recorrido {
     private String origen;
     private String destino;
     private int duracion;
     private LocalDateTime fechaYHora;
+
+    /**
+     * Constructor clase recorrido.
+     * @param origen Lugar de inicio
+     * @param destino Lugar de llegada
+     * @param fechaYHora Dia y hora del viaje
+     * @param duracion duracion del viaje
+     */
 
     public Recorrido(String origen, String destino, LocalDateTime fechaYHora, int duracion) {
         this.origen = origen;
@@ -60,6 +72,10 @@ public class Recorrido {
         return fechaYHora.getDayOfMonth();
     }
 
+    /**
+     * String por defecto para ver toda la informacion del recorrido
+     * @return
+     */
     @Override
     public String toString() {
         String descripcionRecorrido = new String();

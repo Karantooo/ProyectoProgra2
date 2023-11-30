@@ -2,6 +2,10 @@ package org.example.Logica;
 
 import java.util.ArrayList;
 
+/**
+ * Clase para manejar las diferentes corridas de asientos en un bus
+ * @author Carlos Tomas Alvarez Norambuena
+ */
 public class CorridaAsientos {
     private Asiento[][] asientos;
     private int asientosPremium;
@@ -10,7 +14,11 @@ public class CorridaAsientos {
     private int filas;
     private int columnas;
 
-
+    /**
+     * Constructor para generar la corrida de asientos
+     * El constructor se encarga de crear automaticamente los diferentes tipos de asientos.
+     * @param cantidadAsientos
+     */
     public CorridaAsientos(int cantidadAsientos) {
         asientosEjecutivo = (int)(cantidadAsientos *  0.1);
         asientosPremium = (int)(cantidadAsientos *  0.2);
@@ -37,6 +45,12 @@ public class CorridaAsientos {
         }
     }
 
+    /**
+     * Metodo para acceder a las diferentes posiciones de asientos.
+     * @param x
+     * @param y
+     * @return retorna el asiento[x][y]
+     */
     public Asiento getAsiento(int x, int y){
         return asientos[x][y];
     }
