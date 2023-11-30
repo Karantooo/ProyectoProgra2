@@ -31,11 +31,11 @@ class AsientoTest {
 
     @Test
     void verificacionSeteoCorrectoVariablesAsiento2(){
-        assertEquals("4-1", asiento1.getCodigoAsiento());
-        assertEquals(EstadoAsiento.DISPONIBLE, asiento1.getEstadoAsiento());
-        assertEquals("Juan", asiento1.getPasajero().getNombre());
-        assertEquals(false, asiento1.getSistemaEntretenimiento());
-        assertEquals(true, asiento1.getReclinable());
+        assertEquals("4-1", asiento2.getCodigoAsiento());
+        assertEquals(EstadoAsiento.DISPONIBLE, asiento2.getEstadoAsiento());
+        assertEquals("Juan", asiento2.getPasajero().getNombre());
+        assertEquals(false, asiento2.getSistemaEntretenimiento());
+        assertEquals(true, asiento2.getReclinable());
     }
 
 

@@ -25,6 +25,7 @@ public class Asiento {
      * @param reclinable
      * @param sistemaEntretenimiento
      * @param descripcionAsiento
+     * @param precioAsiento
      */
     private Asiento(EstadoAsiento estadoAsiento, Pasajero pasajero, String codigoAsiento, Boolean reclinable,
      Boolean sistemaEntretenimiento, String descripcionAsiento, int precioAsiento){
@@ -101,6 +102,7 @@ public class Asiento {
          * Se exige al menos detallar si el asiento esta ocupado o no y su codigo.
          * @param estadoAsiento
          * @param codigoAsiento
+         * @param precioAsiento
          */
         public Builder(EstadoAsiento estadoAsiento, String codigoAsiento, int precioAsiento){
             this.estadoAsiento = estadoAsiento;
