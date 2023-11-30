@@ -80,13 +80,14 @@ public class PanelReservarAsiento extends JPanel {
 
     private void generarPanelSeleccionAsiento(Bus bus) {
         this.removeAll();
-        PanelSeleccionAsiento panelSeleccionAsiento = new PanelSeleccionAsiento(bus);
         this.setLayout(new GridLayout(1,2));
 
         PanelViaje panelViaje = new PanelViaje(bus);
         this.add(panelViaje);
 
-        this.add(panelSeleccionAsiento);
+        for(int i = 0; i < bus.getPisos(); i++){
+            this.add(new PanelCorridaAsientos(bus.getCorridaAsientosPorPiso().get(i)));
+        }
         this.repaint();
         this.revalidate();
     }

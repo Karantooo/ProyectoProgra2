@@ -17,6 +17,7 @@ public class PanelViaje extends JPanel {
         informacionViaje.setText(informacionViaje.getText() + "\nDestino: " + bus.getRecorrido().getDestino());
         informacionViaje.setText(informacionViaje.getText() + "\nFecha: " + bus.getRecorrido().getDay() + "-" + bus.getRecorrido().getMonth() + "-" + bus.getRecorrido().getYear());
         informacionViaje.setText(informacionViaje.getText() + "\nHora: " + bus.getRecorrido().getHora() + ":" + bus.getRecorrido().getMinutos());
+        informacionViaje.setText(informacionViaje.getText() + "\nCantidad de asientos: " + bus.getAsientosPorPiso() * bus.getPisos());
         informacionViaje.setFont(new Font("SansSerif", Font.PLAIN, 15));
         informacionViaje.setLineWrap(true);
         informacionViaje.setWrapStyleWord(true);
