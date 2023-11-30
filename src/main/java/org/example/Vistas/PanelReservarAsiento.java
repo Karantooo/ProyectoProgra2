@@ -34,7 +34,7 @@ public class PanelReservarAsiento extends JPanel {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
-                    System.out.println(busArrayList.get(finalI));
+                    generarPanelSeleccionAsiento(busArrayList.get(finalI));
                 }
             });
             panelMitadSuperior.add(panelViaje);
@@ -74,6 +74,19 @@ public class PanelReservarAsiento extends JPanel {
     private void volverMenuPrincipal(){
         this.remove(this);
         panelMenuInicial.generarNuevoMenuInicial();
+        this.repaint();
+        this.revalidate();
+    }
+
+    private void generarPanelSeleccionAsiento(Bus bus) {
+        this.removeAll();
+        PanelSeleccionAsiento panelSeleccionAsiento = new PanelSeleccionAsiento(bus);
+        this.setLayout(new GridLayout(1,2));
+
+        PanelViaje panelViaje = new PanelViaje(bus);
+        this.add(panelViaje);
+
+        this.add(panelSeleccionAsiento);
         this.repaint();
         this.revalidate();
     }
