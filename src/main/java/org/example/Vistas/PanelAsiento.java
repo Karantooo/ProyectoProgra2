@@ -10,38 +10,39 @@ public class PanelAsiento extends JPanel {
     private Asiento asiento;
     private String tipoAsiento;
     private String codigoAsiento;
+    JTextArea informacionAsiento;
     public PanelAsiento(Asiento asiento){
         this.asiento = asiento;
+        this.setLayout(new GridLayout(1,1));
+        informacionAsiento = new JTextArea();
         if(asiento != null) determinarTipoAsiento();
-
-        JTextArea informacionAsiento = new JTextArea("Tipo de asiento: " + this.tipoAsiento);
-        informacionAsiento.setText(informacionAsiento.getText() + "\nCodigo del asiento: " + this.codigoAsiento);
-        informacionAsiento.setBackground(Color.cyan);
-        informacionAsiento.setFont(new Font("SansSerif", Font.PLAIN, 15));
-        informacionAsiento.setLineWrap(true);
-        informacionAsiento.setWrapStyleWord(true);
-        informacionAsiento.setEditable(false);
-        informacionAsiento.setBorder(new LineBorder(Color.BLACK, 2));
-        informacionAsiento.setBounds(0, 0, getWidth(), getHeight());
         this.add(informacionAsiento);
 
     }
     public void determinarTipoAsiento() {
         switch (asiento.getDescripcionAsiento()){
             case "Asiento Premium":
-                this.setBackground(Color.magenta);
+                informacionAsiento.setBackground(Color.magenta);
                 break;
             case "Asiento Economico":
-                this.setBackground(Color.blue);
+                informacionAsiento.setBackground(Color.cyan);
                 break;
             case "Asiento Ejecutivo":
-                this.setBackground(Color.orange);
+                informacionAsiento.setBackground(Color.orange);
                 break;
             default:
                 break;
         }
         this.tipoAsiento = asiento.getDescripcionAsiento();
         this.codigoAsiento = asiento.getCodigoAsiento();
+        informacionAsiento.setText("Tipo de asiento: " + this.tipoAsiento);
+        informacionAsiento.setText(informacionAsiento.getText() + "\nCodigo del asiento: " + this.codigoAsiento);
+        informacionAsiento.setFont(new Font("SansSerif", Font.BOLD, 10));
+        informacionAsiento.setLineWrap(true);
+        informacionAsiento.setWrapStyleWord(true);
+        informacionAsiento.setEditable(false);
+        informacionAsiento.setBorder(new LineBorder(Color.BLACK, 2));
+        informacionAsiento.setBounds(0, 0, getWidth(), getHeight());
     }
 
 }
