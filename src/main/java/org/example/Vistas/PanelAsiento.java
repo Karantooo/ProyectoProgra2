@@ -5,17 +5,47 @@ import org.example.Logica.Asiento;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class PanelAsiento extends JPanel {
     private Asiento asiento;
     private String tipoAsiento;
     private String codigoAsiento;
-    JTextArea informacionAsiento;
-    public PanelAsiento(Asiento asiento){
+    private JTextArea informacionAsiento;
+    private PanelCorridaAsientos panelCorridaAsientos;
+    public PanelAsiento(Asiento asiento, PanelCorridaAsientos panelCorridaAsientos){
         this.asiento = asiento;
+        this.panelCorridaAsientos = panelCorridaAsientos;
         this.setLayout(new GridLayout(1,1));
         informacionAsiento = new JTextArea();
         if(asiento != null) determinarTipoAsiento();
+        informacionAsiento.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                generarPanelDetallesAsiento();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                generarPanelDetallesAsiento();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
         this.add(informacionAsiento);
 
     }
@@ -44,5 +74,7 @@ public class PanelAsiento extends JPanel {
         informacionAsiento.setBorder(new LineBorder(Color.BLACK, 2));
         informacionAsiento.setBounds(0, 0, getWidth(), getHeight());
     }
-
+    private void generarPanelDetallesAsiento(){
+        panelCorridaAsientos.generarPanelDetallesAsiento(asiento);
+    }
 }

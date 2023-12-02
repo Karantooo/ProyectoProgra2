@@ -30,7 +30,7 @@ public class PanelReservarAsiento extends JPanel {
         panelMitadSuperior.setBounds(150, 150, getWidth(), getHeight() / 2);
         this.add(panelMitadSuperior);
 
-        JPanel panelMitadInferior = getPanelMitadSuperior();
+        JPanel panelMitadInferior = getPanelMitadInferior();
 
         this.add(panelMitadInferior);
     }
@@ -52,7 +52,7 @@ public class PanelReservarAsiento extends JPanel {
         return panelViaje;
     }
 
-    private JPanel getPanelMitadSuperior() {
+    private JPanel getPanelMitadInferior() {
         JPanel panelMitadInferior = new JPanel(null);
         panelMitadInferior.setBackground(Color.orange);
         JLabel labelEleccion = new JLabel("Seleccione el viaje que desea comprar");
