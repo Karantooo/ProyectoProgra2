@@ -35,6 +35,7 @@ public class Asiento {
         this.descripcionAsiento = descripcionAsiento;
         this.reclinable = reclinable;
         this.sistemaEntretenimiento = sistemaEntretenimiento;
+        this.precioAsiento = precioAsiento;
     }
 
 
@@ -82,6 +83,10 @@ public class Asiento {
      */
     public String getDescripcionAsiento() {
         return descripcionAsiento;
+    }
+
+    public int getPrecioAsiento() {
+        return precioAsiento;
     }
 
     /**
