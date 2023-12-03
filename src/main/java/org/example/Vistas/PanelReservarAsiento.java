@@ -1,5 +1,6 @@
 package org.example.Vistas;
 
+import org.example.Logica.Asiento;
 import org.example.Logica.Bus;
 import org.example.Logica.DirectorBus;
 import org.example.Logica.Recorrido;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 public class PanelReservarAsiento extends JPanel {
     private PanelMenuInicial panelMenuInicial;
     private ArrayList<Bus> busArrayList;
+    private Bus busSeleccionado;
+    private boolean vaAComprar = false;
     public PanelReservarAsiento(PanelMenuInicial panelMenuInicial) {
         this.panelMenuInicial = panelMenuInicial;
         this.busArrayList = panelMenuInicial.getPanelPrincipal().getBusArrayList();
@@ -98,6 +101,7 @@ public class PanelReservarAsiento extends JPanel {
 
     private void generarPanelSeleccionAsiento(Bus bus) {
         this.removeAll();
+        this.busSeleccionado = bus;
         this.setLayout(new GridLayout(1,2));
 
         PanelViaje panelViaje = new PanelViaje(bus);
@@ -122,7 +126,7 @@ public class PanelReservarAsiento extends JPanel {
             labelPiso.setVerticalAlignment(SwingConstants.CENTER);
             panelAsientos.add(labelPiso, BorderLayout.NORTH);
 
-            panelAsientos.add(new PanelCorridaAsientos(bus.getCorridaAsientosPorPiso().get(i)), BorderLayout.CENTER);
+            panelAsientos.add(new PanelCorridaAsientos(bus.getCorridaAsientosPorPiso().get(i), this), BorderLayout.CENTER);
             panelPisos.add(panelAsientos);
             this.add(panelPisos);
         }
@@ -130,4 +134,56 @@ public class PanelReservarAsiento extends JPanel {
         this.revalidate();
     }
 
+    public void generarPanelDetalleAsiento(Asiento asiento) {
+        this.removeAll();
+
+        JPanel panelDetallesAsiento = new JPanel(null);
+        panelDetallesAsiento.setBackground(Color.PINK);
+        panelDetallesAsiento.setBorder(new LineBorder(Color.BLACK, 10));
+
+        JTextArea informacionAsiento = new JTextArea("Estado del asiento: " + asiento.getEstadoAsiento());
+        informacionAsiento.setBackground(Color.PINK);
+        informacionAsiento.setText(informacionAsiento.getText() + "\nPasajero: " + asiento.getPasajero());
+        informacionAsiento.setText(informacionAsiento.getText() + "\nNumero de asiento: " + asiento.getCodigoAsiento());
+        informacionAsiento.setText(informacionAsiento.getText() + "\nTipo de asiento: " + asiento.getDescripcionAsiento());
+        informacionAsiento.setText(informacionAsiento.getText() + "\nPrecio del asiento: $" + asiento.getPrecioAsiento());
+        informacionAsiento.setFont(new Font("SansSerif", Font.PLAIN, 25));
+        informacionAsiento.setLineWrap(true);
+        informacionAsiento.setWrapStyleWord(true);
+        informacionAsiento.setEditable(false);
+        informacionAsiento.setBounds(10,10 , 500, 240);
+        panelDetallesAsiento.add(informacionAsiento);
+
+        JButton botonVolverSeleccionAsiento = new JButton("Volver");
+
+        botonVolverSeleccionAsiento.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                generarPanelSeleccionAsiento(busSeleccionado);
+            }
+        });
+        botonVolverSeleccionAsiento.setBounds(10,650,250,100);
+        panelDetallesAsiento.add(botonVolverSeleccionAsiento);
+
+        JButton botonComprar = new JButton("Presione aqui para comprar este asiento");
+        botonComprar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                generarPanelCompra(asiento);
+            }
+        });
+        botonComprar.setBounds(900,250,300,150);
+        panelDetallesAsiento.add(botonComprar);
+
+        this.add(panelDetallesAsiento);
+        this.repaint();
+        this.revalidate();
+    }
+    private void generarPanelCompra(Asiento asiento) {
+        PanelCompra panelCompra = new PanelCompra(asiento);
+        //panelCompra.setBounds(700,200,400,500);
+        this.add(panelCompra);
+        this.repaint();
+        this.revalidate();
+    }
 }
