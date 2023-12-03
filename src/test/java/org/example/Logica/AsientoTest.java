@@ -23,8 +23,4 @@ class AsientoTest {
         assertEquals(true, asiento1.getSistemaEntretenimiento());
         assertEquals(false, asiento1.getReclinable());
     }
-
-
-
-
 }
