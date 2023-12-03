@@ -17,7 +17,9 @@ public class PanelCompra extends JPanel {
     private String apellido;
     private String banco;
     private String numCuenta;
-    public PanelCompra(Asiento asiento) {
+    private PanelReservarAsiento panelReservarAsiento;
+    public PanelCompra(Asiento asiento, PanelReservarAsiento panelReservarAsiento) {
+        this.panelReservarAsiento = panelReservarAsiento;
         this.setLayout(null);
         this.asiento = asiento;
         this.setBackground(Color.cyan);
@@ -101,6 +103,7 @@ public class PanelCompra extends JPanel {
     private void asignarPasajero() {
         this.pasajero = new Pasajero(nombre, apellido, banco, numCuenta);
         this.asiento.setPasajero(pasajero);
+        generarMensajeCreacionCorrecta();
     }
 
     private boolean revisarEnvio() {
@@ -129,6 +132,29 @@ public class PanelCompra extends JPanel {
     }
     private void generarMensajeCreacionIncorrecta() {
         JOptionPane.showMessageDialog(null, "Alguno de los datos ingresados es invalido");
+    }
+    private void generarMensajeCreacionCorrecta() {
+        this.removeAll();
+
+        JLabel labelCreacionCorrecta = new JLabel("Se asigno correctamente al pasajero!");
+        labelCreacionCorrecta.setBounds(0, 0, getWidth(), getHeight());
+        labelCreacionCorrecta.setFont(new Font("SansSerif", Font.PLAIN, 30));
+        labelCreacionCorrecta.setHorizontalAlignment(SwingConstants.CENTER);
+        labelCreacionCorrecta.setVerticalAlignment(SwingConstants.CENTER);
+        this.add(labelCreacionCorrecta);
+
+        JButton botonVolver = new JButton("Volver al menu inicial");
+        botonVolver.setBounds(525, 600, 200, 100);
+        botonVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelReservarAsiento.volverMenuPrincipal();
+            }
+        });
+        this.add(botonVolver);
+
+        this.repaint();
+        this.revalidate();
     }
     private boolean revisarTextosVacios() {
         if(nombre.isEmpty() || apellido.isEmpty() || banco.isEmpty() || numCuenta.isEmpty()) return true;

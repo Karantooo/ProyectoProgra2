@@ -36,6 +36,14 @@ public class PanelReservarAsiento extends JPanel {
         JPanel panelMitadInferior = getPanelMitadInferior();
 
         this.add(panelMitadInferior);
+
+        JButton botonVolver = new JButton("Volver al menu inicial");
+        botonVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 
     private PanelViaje getPanelViaje(int i) {
@@ -85,7 +93,7 @@ public class PanelReservarAsiento extends JPanel {
         busArrayList.add(directorBus.buildMediano(new Recorrido("Chiguayante", "Stgo", LocalDateTime.of(2023,12,24,12,30),390)));
     }
 
-    private void volverMenuPrincipal(){
+    public void volverMenuPrincipal(){
         this.remove(this);
         panelMenuInicial.generarNuevoMenuInicial();
         this.repaint();
@@ -181,7 +189,7 @@ public class PanelReservarAsiento extends JPanel {
         this.revalidate();
     }
     private void generarPanelCompra(Asiento asiento) {
-        PanelCompra panelCompra = new PanelCompra(asiento);
+        PanelCompra panelCompra = new PanelCompra(asiento, this);
         //panelCompra.setBounds(700,200,400,500);
         this.add(panelCompra);
         this.repaint();
