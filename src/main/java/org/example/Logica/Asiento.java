@@ -73,6 +73,7 @@ public class Asiento {
      * @param pasajero
      */
     public void setPasajero(Pasajero pasajero) {
+        estadoAsiento = EstadoAsiento.OCUPADO;
         this.pasajero = pasajero;
     }
 
