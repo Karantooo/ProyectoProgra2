@@ -12,6 +12,7 @@ public class PanelPrincipal extends JPanel {
     public PanelPrincipal(){
         busArrayList = new ArrayList<>();
         this.setBackground(Color.orange);
+        this.setLayout(new GridLayout(1,1));
         panelMenuInicial = new PanelMenuInicial(this);
         this.add(panelMenuInicial);
     }

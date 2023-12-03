@@ -2,6 +2,10 @@ package org.example.Logica;
 
 import java.util.ArrayList;
 
+/**
+ * Clase escrita con el patron builder para la creacion de buses
+ * @author Benjamin Espinoza
+ */
 public class Bus {
     private int pisos;
     private int asientosPorPiso;
@@ -45,10 +49,18 @@ public class Bus {
         return corridaAsientosPorPiso;
     }
 
+    /**
+     * Clase interna con la que se va  a constuir los buses
+     */
     public static class BusBuilder {
         private int pisos;
         private int asientosPorPiso;
         private Recorrido recorrido;
+
+        /**
+         * Constructor por defecto por si no se llama a los otros metodos
+         * @param recorrido
+         */
         public BusBuilder(Recorrido recorrido){
             this.pisos = 1;
             this.asientosPorPiso = 40;
@@ -63,6 +75,10 @@ public class Bus {
             this.asientosPorPiso = asientosPorPiso;
         }
 
+        /**
+         * Metodo con el que se crean los buses.
+         * @return
+         */
         public Bus buildBus(){
             return new Bus(pisos,asientosPorPiso,recorrido);
         }

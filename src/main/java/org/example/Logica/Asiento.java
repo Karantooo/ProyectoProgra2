@@ -14,6 +14,7 @@ public class Asiento {
     private Boolean reclinable;
     private Boolean sistemaEntretenimiento;
     private String descripcionAsiento;
+    private int precioAsiento;
 
     /**
      * Constructor de la clase privado por defecto.
@@ -24,15 +25,17 @@ public class Asiento {
      * @param reclinable
      * @param sistemaEntretenimiento
      * @param descripcionAsiento
+     * @param precioAsiento
      */
     private Asiento(EstadoAsiento estadoAsiento, Pasajero pasajero, String codigoAsiento, Boolean reclinable,
-     Boolean sistemaEntretenimiento, String descripcionAsiento){
+     Boolean sistemaEntretenimiento, String descripcionAsiento, int precioAsiento){
         this.estadoAsiento = estadoAsiento;
         this.pasajero = pasajero;
         this.codigoAsiento = codigoAsiento;
         this.descripcionAsiento = descripcionAsiento;
         this.reclinable = reclinable;
         this.sistemaEntretenimiento = sistemaEntretenimiento;
+        this.precioAsiento = precioAsiento;
     }
 
 
@@ -70,6 +73,7 @@ public class Asiento {
      * @param pasajero
      */
     public void setPasajero(Pasajero pasajero) {
+        estadoAsiento = EstadoAsiento.OCUPADO;
         this.pasajero = pasajero;
     }
 
@@ -80,6 +84,10 @@ public class Asiento {
      */
     public String getDescripcionAsiento() {
         return descripcionAsiento;
+    }
+
+    public int getPrecioAsiento() {
+        return precioAsiento;
     }
 
     /**
@@ -93,20 +101,23 @@ public class Asiento {
         private Boolean reclinable;
         private Boolean sistemaEntretenimiento;
         private String descripcionAsiento;
+        private int asientoPrecio;
 
         /**
          * Patron que instancia las condiciones obligatorias para todo asiento.
          * Se exige al menos detallar si el asiento esta ocupado o no y su codigo.
          * @param estadoAsiento
          * @param codigoAsiento
+         * @param precioAsiento
          */
-        public Builder(EstadoAsiento estadoAsiento, String codigoAsiento){
+        public Builder(EstadoAsiento estadoAsiento, String codigoAsiento, int precioAsiento){
             this.estadoAsiento = estadoAsiento;
             this.pasajero = null;
             this.codigoAsiento = codigoAsiento;
             this.descripcionAsiento = "";
             this.reclinable = false;
             this.sistemaEntretenimiento = false;
+            this.asientoPrecio = precioAsiento;
         }
 
         /**
@@ -147,7 +158,7 @@ public class Asiento {
          */
         public Asiento buildAsiento(){
             Asiento asiento = new Asiento(estadoAsiento, pasajero, codigoAsiento, reclinable,
-                    sistemaEntretenimiento, descripcionAsiento);
+                    sistemaEntretenimiento, descripcionAsiento, asientoPrecio);
             return asiento;
         }
     }

@@ -2,19 +2,30 @@ package org.example.Logica;
 
 import java.util.ArrayList;
 
+/**
+ * Clase para manejar las diferentes corridas de asientos en un bus
+ * @author Carlos Tomas Alvarez Norambuena
+ */
 public class CorridaAsientos {
     private Asiento[][] asientos;
     private int asientosPremium;
     private int asientosEconomicos;
     private int asientosEjecutivo;
+    private int filas;
+    private int columnas;
 
+    /**
+     * Constructor para generar la corrida de asientos
+     * El constructor se encarga de crear automaticamente los diferentes tipos de asientos.
+     * @param cantidadAsientos
+     */
     public CorridaAsientos(int cantidadAsientos) {
         asientosEjecutivo = (int)(cantidadAsientos *  0.1);
         asientosPremium = (int)(cantidadAsientos *  0.2);
         asientosEconomicos = cantidadAsientos - (asientosPremium +  asientosEjecutivo);
 
-        int filas = cantidadAsientos/4;
-        int columnas = 4;
+        filas = cantidadAsientos/4;
+        columnas = 4;
         asientos = new Asiento[filas][columnas];
 
         int cantidadAsientosCreados = 0;
@@ -24,16 +35,22 @@ public class CorridaAsientos {
                 DirectorAsiento director = new DirectorAsiento();
                 String codigoAsiento = new String(i + "-" + j);
                 if (cantidadAsientosCreados < asientosEjecutivo)
-                    asientos[i][j] = director.buildEjecutivo(EstadoAsiento.DISPONIBLE, null, codigoAsiento);
+                    asientos[i][j] = director.buildEjecutivo(codigoAsiento);
                 else if (cantidadAsientosCreados < asientosPremium + asientosEjecutivo)
-                    asientos[i][j] = director.buildPremium(EstadoAsiento.DISPONIBLE, null, codigoAsiento);
+                    asientos[i][j] = director.buildPremium(codigoAsiento);
                 else
-                    asientos[i][j] = director.buildEconomico(EstadoAsiento.DISPONIBLE, null, codigoAsiento);
+                    asientos[i][j] = director.buildEconomico(codigoAsiento);
                 cantidadAsientosCreados++;
             }
         }
     }
 
+    /**
+     * Metodo para acceder a las diferentes posiciones de asientos.
+     * @param x
+     * @param y
+     * @return retorna el asiento[x][y]
+     */
     public Asiento getAsiento(int x, int y){
         return asientos[x][y];
     }
@@ -48,5 +65,13 @@ public class CorridaAsientos {
 
     public int getAsientosEjecutivo() {
         return asientosEjecutivo;
+    }
+
+    public int getFilas() {
+        return filas;
+    }
+
+    public int getColumnas() {
+        return columnas;
     }
 }

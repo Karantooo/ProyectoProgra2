@@ -7,19 +7,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.time.DateTimeException;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class PanelCrearViaje extends JPanel {
     private String origen;
     private String destino;
-    private int year;
-    private int month;
-    private int day;
-    private int hora;
-    private int minuto;
-    private int duracion;
+    private String year;
+    private String month;
+    private String day;
+    private String hora;
+    private String minuto;
+    private String duracion;
     private LocalDateTime fechaYHora;
     private int capacidadPorPiso;
     private int cantidadDePisos;
@@ -162,25 +160,22 @@ public class PanelCrearViaje extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 origen = textoOrigen.getText();
                 destino = textoDestino.getText();
-                hora = Integer.parseInt(textoHora.getText());
-                minuto = Integer.parseInt(textoMinutos.getText());
-                year = Integer.parseInt(textoYear.getText());
-                month = Integer.parseInt(textoMes.getText());
-                day = Integer.parseInt(textoDia.getText());
+                hora = textoHora.getText();
+                minuto = textoMinutos.getText();
+                year = textoYear.getText();
+                month = textoMes.getText();
+                day = textoDia.getText();
                 capacidadPorPiso = (int) comboBoxCapacidadPorPiso.getSelectedItem();
                 cantidadDePisos = (int) comboBoxCantidadDePisos.getSelectedItem();
-                duracion = Integer.parseInt(textoDuracion.getText());
-
-                boolean estadoenvio = revisarEnvio();
-                if(estadoenvio){
-                    Recorrido recorrido = new Recorrido(origen, destino, LocalDateTime.of(year,month,day,hora,minuto), duracion);
-                    Bus.BusBuilder busBuilder = new Bus.BusBuilder(recorrido);
-                    busBuilder.buildPisos(cantidadDePisos);
-                    busBuilder.buildAsientosPorPiso(capacidadPorPiso);
-                    panelMenuInicial.getPanelPrincipal().agregarBus(busBuilder.buildBus());
-                    generarMensajeCreacionCorrecta();
+                duracion = textoDuracion.getText();
+                boolean textoVacio = revisarTextosVacios();
+                if(textoVacio) generarMensajeIngreseDatos();
+                else {
+                    boolean estadoEnvio = revisarEnvio();
+                    if (estadoEnvio) {
+                        crearViaje();
+                    } else generarMensajeCreacionIncorrecta();
                 }
-                else generarMensajeCreacionIncorrecta();
             }
         });
         this.add(botonEnviar);
@@ -196,17 +191,36 @@ public class PanelCrearViaje extends JPanel {
         this.add(botonVolver);
     }
 
+    private void generarMensajeIngreseDatos(){
+        JOptionPane.showMessageDialog(null, "Debes ingresar todos los datos!");
+    }
+
+    private void crearViaje(){
+        Recorrido recorrido = new Recorrido(origen, destino, LocalDateTime.of(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day),Integer.parseInt(hora),Integer.parseInt(minuto)), Integer.parseInt(duracion));
+        Bus.BusBuilder busBuilder = new Bus.BusBuilder(recorrido);
+        busBuilder.buildPisos(cantidadDePisos);
+        busBuilder.buildAsientosPorPiso(capacidadPorPiso);
+        panelMenuInicial.getPanelPrincipal().agregarBus(busBuilder.buildBus());
+        generarMensajeCreacionCorrecta();
+    }
     private boolean revisarEnvio(){
-        if(hora < 0 | hora > 24) return false;
-        if(minuto < 0 | minuto > 60) return false;
-        if(duracion < 0) return false;
+        if(Integer.parseInt(hora) < 0 | Integer.parseInt(hora) > 24) return false;
+        if(Integer.parseInt(minuto) < 0 | Integer.parseInt(minuto) > 60) return false;
+        if(Integer.parseInt(duracion) < 0) return false;
         if(contieneNumero(origen) | contieneNumero(destino)) return false;
-        if(day < 0 | day > 31) return false;
-        if(month < 0 | month > 12) return false;
-        if(year < 0) return false;
+        if(Integer.parseInt(day) < 0 | Integer.parseInt(day) > 31) return false;
+        if(Integer.parseInt(month) < 0 | Integer.parseInt(month) > 12) return false;
+        if(Integer.parseInt(year) < 0) return false;
+        if(!(contieneSoloNumeros(hora) | contieneSoloNumeros(minuto) | contieneSoloNumeros(duracion) |
+                contieneSoloNumeros(day) | contieneSoloNumeros(month) | contieneSoloNumeros(year))) return false;
         return true;
     }
 
+    private boolean revisarTextosVacios(){
+        if(origen.isEmpty() | destino.isEmpty() | hora.isEmpty() | minuto.isEmpty() | day.isEmpty() |
+        month.isEmpty() | year.isEmpty() | duracion.isEmpty()) return true;
+        else return false;
+    }
     private void generarMensajeCreacionCorrecta() {
         this.removeAll();
 
@@ -233,28 +247,7 @@ public class PanelCrearViaje extends JPanel {
     }
 
     private void generarMensajeCreacionIncorrecta() {
-        this.removeAll();
-
-        //Jlabel
-        JLabel labelCreacionInCorrecta = new JLabel("El viaje no se pudo crear!");
-        labelCreacionInCorrecta.setBounds(0, 0, getWidth(), getHeight());
-        labelCreacionInCorrecta.setFont(new Font("SansSerif", Font.PLAIN, 30));
-        labelCreacionInCorrecta.setHorizontalAlignment(SwingConstants.CENTER);
-        labelCreacionInCorrecta.setVerticalAlignment(SwingConstants.CENTER);
-        this.add(labelCreacionInCorrecta);
-
-        //JButtons
-        JButton botonVolver = new JButton("Volver");
-        botonVolver.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                volverMenuPrincipal();
-            }
-        });
-        botonVolver.setBounds(1150,625, 200, 100);
-        this.add(botonVolver);
-        repaint();
-        revalidate();
+        JOptionPane.showMessageDialog(null, "Alguno de los datos ingresados es invalido");
     }
 
     private void volverMenuPrincipal(){
@@ -272,5 +265,12 @@ public class PanelCrearViaje extends JPanel {
         }
         return false;
     }
-
+    private boolean contieneSoloNumeros(String s){
+        for (int i = 0; i < s.length(); i++) {
+            if (Character.isLetter(s.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
