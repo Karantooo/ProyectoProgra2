@@ -1,6 +1,7 @@
 package org.example.Vistas;
 
 import org.example.Logica.Asiento;
+import org.example.Logica.EstadoAsiento;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -19,7 +20,11 @@ public class PanelAsiento extends JPanel {
         this.panelCorridaAsientos = panelCorridaAsientos;
         this.setLayout(new GridLayout(1,1));
         informacionAsiento = new JTextArea();
-        if(asiento != null) determinarTipoAsiento();
+        if(asiento != null) {
+            determinarTipoAsiento();
+            if(asiento.getEstadoAsiento() == EstadoAsiento.OCUPADO) informacionAsiento.setBackground(Color.red);
+        }
+
         informacionAsiento.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -67,7 +72,7 @@ public class PanelAsiento extends JPanel {
         this.codigoAsiento = asiento.getCodigoAsiento();
         informacionAsiento.setText("Tipo de asiento: " + this.tipoAsiento);
         informacionAsiento.setText(informacionAsiento.getText() + "\nCodigo del asiento: " + this.codigoAsiento);
-        informacionAsiento.setFont(new Font("SansSerif", Font.BOLD, 10));
+        informacionAsiento.setFont(new Font("SansSerif", Font.BOLD, 9));
         informacionAsiento.setLineWrap(true);
         informacionAsiento.setWrapStyleWord(true);
         informacionAsiento.setEditable(false);
@@ -75,6 +80,8 @@ public class PanelAsiento extends JPanel {
         informacionAsiento.setBounds(0, 0, getWidth(), getHeight());
     }
     private void generarPanelDetallesAsiento(){
-        panelCorridaAsientos.generarPanelDetallesAsiento(asiento);
+        if(asiento.getEstadoAsiento() == EstadoAsiento.OCUPADO) JOptionPane.showMessageDialog(null, "Este asiento esta ocupado por: \n"
+                + asiento.getPasajero().getNombre() + " " + asiento.getPasajero().getApellido());
+        else panelCorridaAsientos.generarPanelDetallesAsiento(asiento);
     }
 }

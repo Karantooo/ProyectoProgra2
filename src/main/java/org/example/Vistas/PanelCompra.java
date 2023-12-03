@@ -78,7 +78,7 @@ public class PanelCompra extends JPanel {
         textoNumeroDeCuenta.setBounds(xInicial + 200, yInicial + 225, 500, 50);
         this.add(textoNumeroDeCuenta);
 
-        JButton botonEnviar = new JButton("Crear");
+        JButton botonEnviar = new JButton("Asignar pasajero");
         botonEnviar.setBounds(xInicial + 200,yInicial+ 400, 200, 100);
         botonEnviar.addActionListener(new ActionListener() {
             @Override
