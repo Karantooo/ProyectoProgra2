@@ -143,7 +143,8 @@ public class PanelReservarAsiento extends JPanel {
 
         JTextArea informacionAsiento = new JTextArea("Estado del asiento: " + asiento.getEstadoAsiento());
         informacionAsiento.setBackground(Color.PINK);
-        informacionAsiento.setText(informacionAsiento.getText() + "\nPasajero: " + asiento.getPasajero());
+        if(asiento.getPasajero() == null) informacionAsiento.setText(informacionAsiento.getText() + "\nPasajero: No tiene");
+        else informacionAsiento.setText(informacionAsiento.getText() + "\nPasajero: " + asiento.getPasajero().getNombre() + " " + asiento.getPasajero().getApellido());
         informacionAsiento.setText(informacionAsiento.getText() + "\nNumero de asiento: " + asiento.getCodigoAsiento());
         informacionAsiento.setText(informacionAsiento.getText() + "\nTipo de asiento: " + asiento.getDescripcionAsiento());
         informacionAsiento.setText(informacionAsiento.getText() + "\nPrecio del asiento: $" + asiento.getPrecioAsiento());
