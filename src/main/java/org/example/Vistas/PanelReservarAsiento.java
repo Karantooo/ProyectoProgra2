@@ -12,15 +12,23 @@ import java.awt.event.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * Panel para manejar la reserva de un asiento
+ */
 public class PanelReservarAsiento extends JPanel {
     private PanelMenuInicial panelMenuInicial;
     private ArrayList<Bus> busArrayList;
     private Bus busSeleccionado;
     private boolean vaAComprar = false;
+
+    /**
+     * En el constructor se generan viajes predeterminados, y se generan un panel para la mitad superior con los viajes
+     * y un panel para la mitad inferior
+     * @param panelMenuInicial panel de menu inicial desde el que se genero este panel
+     */
     public PanelReservarAsiento(PanelMenuInicial panelMenuInicial) {
         this.panelMenuInicial = panelMenuInicial;
         this.busArrayList = panelMenuInicial.getPanelPrincipal().getBusArrayList();
-        generarViajesPredeterminados();
         generarViajesPredeterminados();
         this.setLayout(new GridLayout(2,1));
         this.setBackground(Color.orange);
@@ -36,16 +44,13 @@ public class PanelReservarAsiento extends JPanel {
         JPanel panelMitadInferior = getPanelMitadInferior();
 
         this.add(panelMitadInferior);
-
-        JButton botonVolver = new JButton("Volver al menu inicial");
-        botonVolver.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
     }
 
+    /**
+     * Metodo que genera un PanelViaje para el bus que se indique y le agrega el boton para seleccionar el viaje
+     * @param i indice en el cual este el bus
+     * @return PanelViaje junto con el boton para seleccionarlo
+     */
     private PanelViaje getPanelViaje(int i) {
         PanelViaje panelViaje = new PanelViaje(busArrayList.get(i));
         panelViaje.setBounds(300 * i, 0, 300, 300);
@@ -63,6 +68,11 @@ public class PanelReservarAsiento extends JPanel {
         return panelViaje;
     }
 
+    /**
+     * Metodo para generar el panel de la mitad inferior, crea un trexto con indicaciones y un JButton para volver al
+     * menu incial
+     * @return
+     */
     private JPanel getPanelMitadInferior() {
         JPanel panelMitadInferior = new JPanel(null);
         panelMitadInferior.setBackground(Color.orange);
@@ -85,6 +95,10 @@ public class PanelReservarAsiento extends JPanel {
         return panelMitadInferior;
     }
 
+    /**
+     * Metodo para generar los viajes predeterminados, si es que se crearon mas de tres viajes antes de intentar
+     * reservar un asiento estos viajes no se generan
+     */
     private void generarViajesPredeterminados() {
         if(busArrayList.size() >= 3) return;
         DirectorBus directorBus = new DirectorBus();
@@ -93,6 +107,9 @@ public class PanelReservarAsiento extends JPanel {
         busArrayList.add(directorBus.buildMediano(new Recorrido("Chiguayante", "Stgo", LocalDateTime.of(2023,12,24,12,30),390)));
     }
 
+    /**
+     * Metodo para volver al menu inicial
+     */
     public void volverMenuPrincipal(){
         this.remove(this);
         panelMenuInicial.generarNuevoMenuInicial();
@@ -100,6 +117,9 @@ public class PanelReservarAsiento extends JPanel {
         this.revalidate();
     }
 
+    /**
+     * Meotodo para volver a este mismo JPanel
+     */
     private void volverPanelReservarAsiento() {
         this.removeAll();
         this.add(new PanelReservarAsiento(panelMenuInicial));
@@ -107,6 +127,10 @@ public class PanelReservarAsiento extends JPanel {
         this.revalidate();
     }
 
+    /**
+     * Metodo para generar el panel desde el cual se selecciona el asiento para comprar
+     * @param bus bus elegido para comprar un viaje
+     */
     private void generarPanelSeleccionAsiento(Bus bus) {
         this.removeAll();
         this.busSeleccionado = bus;
@@ -142,6 +166,11 @@ public class PanelReservarAsiento extends JPanel {
         this.revalidate();
     }
 
+    /**
+     * Metodo para generar el panel con el detalle del asiento escogido para comprar, genera un boton para volver y otro
+     * para comprar el asiento
+     * @param asiento asiento escogido para comprar
+     */
     public void generarPanelDetalleAsiento(Asiento asiento) {
         this.removeAll();
 
@@ -188,9 +217,13 @@ public class PanelReservarAsiento extends JPanel {
         this.repaint();
         this.revalidate();
     }
+
+    /**
+     * Metodo que genera un PanelCompra con el asiento escogido
+     * @param asiento Asiento escogido para comprar
+     */
     private void generarPanelCompra(Asiento asiento) {
         PanelCompra panelCompra = new PanelCompra(asiento, this);
-        //panelCompra.setBounds(700,200,400,500);
         this.add(panelCompra);
         this.repaint();
         this.revalidate();
