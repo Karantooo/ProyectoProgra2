@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 /**
  * Clase tipo JPanel para manejar la compra de un asiento
+ * @author Benjamin Espinoza
  */
 public class PanelCompra extends JPanel {
     private Asiento asiento;

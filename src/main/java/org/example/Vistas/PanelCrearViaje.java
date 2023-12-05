@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 
 /**
  * Clase tipo JPanel para manejar la creacion de un viaje
+ * @author Benjamin Espinoza
  */
 public class PanelCrearViaje extends JPanel {
     private String origen;

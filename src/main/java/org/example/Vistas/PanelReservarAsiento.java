@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 /**
  * Panel para manejar la reserva de un asiento
+ * @author Benjamin Espinoza
  */
 public class PanelReservarAsiento extends JPanel {
     private PanelMenuInicial panelMenuInicial;
