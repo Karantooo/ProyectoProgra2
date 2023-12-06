@@ -45,6 +45,7 @@ public class PanelAsiento extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 generarPanelDetallesAsiento();
+                System.out.println(getWidth() / 4);
             }
 
             @Override
@@ -85,9 +86,8 @@ public class PanelAsiento extends JPanel {
         }
         this.tipoAsiento = asiento.getDescripcionAsiento();
         this.codigoAsiento = asiento.getCodigoAsiento();
-        informacionAsiento.setText("\nCodigo del asiento: " + this.codigoAsiento);
-        informacionAsiento.setText(informacionAsiento.getText() + "\nTipo de asiento: " + this.tipoAsiento);
-        informacionAsiento.setFont(new Font("SansSerif", Font.BOLD, 9));
+        informacionAsiento.setText("Numero de asiento: " + this.codigoAsiento);
+        informacionAsiento.setFont(new Font("SansSerif", Font.BOLD, 15));
         informacionAsiento.setLineWrap(true);
         informacionAsiento.setWrapStyleWord(true);
         informacionAsiento.setEditable(false);

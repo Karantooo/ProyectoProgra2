@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Panel para manejar la reserva de un asiento
@@ -137,7 +138,17 @@ public class PanelReservarAsiento extends JPanel {
         this.busSeleccionado = bus;
         this.setLayout(new GridLayout(1,2));
 
+        JPanel panelIzquierdo = new JPanel(null);
+        panelIzquierdo.setBackground(Color.PINK);
+
+        JLabel labelViajeSeleccionado = new JLabel("Viaje seleccionado:");
+        labelViajeSeleccionado.setBounds(10,10,250,50);
+        labelViajeSeleccionado.setFont(new Font("SansSerif", Font.PLAIN, 25));
+        panelIzquierdo.add(labelViajeSeleccionado);
+
         PanelViaje panelViaje = new PanelViaje(bus);
+        panelViaje.setBounds(15,50,200,200);
+        panelIzquierdo.add(panelViaje);
         JButton botonVolver = new JButton("Volver");
         botonVolver.addActionListener(new ActionListener() {
             @Override
@@ -145,9 +156,28 @@ public class PanelReservarAsiento extends JPanel {
                 volverPanelReservarAsiento();
             }
         });
-        botonVolver.setBackground(Color.cyan);
-        panelViaje.add(botonVolver);
-        this.add(panelViaje);
+        botonVolver.setBounds(10,650,200,100);
+        panelIzquierdo.add(botonVolver);
+
+        JTextArea leyendaAsientos = new JTextArea("Amarillo:  Asiento Ejecutivo" +
+                "\nMorado: Asiento Premium" +
+                "\nCeleste: Asiento Economico" +
+                "\nRojo: Asiento Ocupado");
+        leyendaAsientos.setBackground(Color.PINK);
+        leyendaAsientos.setFont(new Font("SansSerif", Font.ITALIC, 25));
+        leyendaAsientos.setLineWrap(true);
+        leyendaAsientos.setWrapStyleWord(true);
+        leyendaAsientos.setEditable(false);
+        leyendaAsientos.setBorder(new LineBorder(Color.BLACK, 4));
+        leyendaAsientos.setBounds(440,10 , 350, 150);
+        panelIzquierdo.add(leyendaAsientos);
+
+        JLabel labelIndicacion = new JLabel("Presione sobre el asiento que desea reservar");
+        labelIndicacion.setFont(new Font("SansSerif", Font.ITALIC, 25));
+        labelIndicacion.setBounds(250,getHeight() / 2,600,100);
+        panelIzquierdo.add(labelIndicacion);
+
+        this.add(panelIzquierdo);
 
         JPanel panelPisos = new JPanel(new GridLayout(1,bus.getPisos()));
         for(int i = 0; i < bus.getPisos(); i++){
@@ -192,6 +222,19 @@ public class PanelReservarAsiento extends JPanel {
         informacionAsiento.setEditable(false);
         informacionAsiento.setBounds(10,10 , 500, 240);
         panelDetallesAsiento.add(informacionAsiento);
+
+        JTextArea incluyeAsiento = new JTextArea("Este asiento incluye: ");
+        incluyeAsiento.setBackground(Color.PINK);
+        incluyeAsiento.setBorder(new LineBorder(Color.BLACK,4));
+        incluyeAsiento.setText(incluyeAsiento.getText() + "\n* Servicios basicos");
+        if (asiento.getReclinable()) incluyeAsiento.setText(incluyeAsiento.getText() + "\n* Posibilidad de reclinar");
+        if (asiento.getSistemaEntretenimiento()) incluyeAsiento.setText(incluyeAsiento.getText() + "\n* Sistema de entretenimiento");
+        incluyeAsiento.setFont(new Font("SansSerif", Font.PLAIN, 25));
+        incluyeAsiento.setLineWrap(true);
+        incluyeAsiento.setWrapStyleWord(true);
+        incluyeAsiento.setEditable(false);
+        incluyeAsiento.setBounds(400,300,350,200);
+        panelDetallesAsiento.add(incluyeAsiento);
 
         JButton botonVolverSeleccionAsiento = new JButton("Volver");
 
