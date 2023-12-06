@@ -22,5 +22,10 @@ class RecorridoTest {
 
     }
 
+    @Test
+    void testOrigenYDestino(){
+        assertEquals("Concepcion", recorrido1.getOrigen());
+        assertEquals("Santiago", recorrido1.getDestino());
+    }
 
 }
