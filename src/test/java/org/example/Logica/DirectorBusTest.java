@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Clase para verificar que la clase DirectorBus instancie bien los buses
+ * @author Carlos Tomas Alvarez Norambuena
  */
 class DirectorBusTest {
 

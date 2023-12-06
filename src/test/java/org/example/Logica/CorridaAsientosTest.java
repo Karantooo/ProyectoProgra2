@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Clase Creada para probar las funcionalidades de la clase CorridaAsientos
+ * @author Carlos Tomas Alvarez Norambuena
  */
 class CorridaAsientosTest {
     private CorridaAsientos corridaAsientos;

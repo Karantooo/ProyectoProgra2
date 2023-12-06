@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Se verifica que los Directores de asiento creen bien los asientos predeterminados
+ * @author Carlos Tomas Alvarez Norambuena
  */
 class DirectorAsientoTest {
 

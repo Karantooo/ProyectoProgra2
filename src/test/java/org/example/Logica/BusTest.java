@@ -10,6 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Clase para verificar La creacion de los buses con el patron builder
+ * @author Carlos Tomas Alvarez Norambuena
  */
 class BusTest {
 

@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Clase creada para verificar la creacion de asientos con el patron builder.
+ * @author Carlos Tomas Alvarez Norambuena
  */
 class AsientoTest {
     Asiento asiento1;

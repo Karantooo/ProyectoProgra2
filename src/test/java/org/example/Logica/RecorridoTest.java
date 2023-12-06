@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Clase para verificar la correcta creacion del recorrido.
+ * @author Carlos Tomas Alvarez Norambuena
  */
 class RecorridoTest {
 
