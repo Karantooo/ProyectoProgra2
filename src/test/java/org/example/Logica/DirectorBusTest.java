@@ -6,12 +6,18 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Clase para verificar que la clase DirectorBus instancie bien los buses
+ */
 class DirectorBusTest {
 
     @BeforeEach
     void setUp() {
     }
 
+    /**
+     * Se instancia y verifica que el bus chico se creo correctamente.
+     */
     @Test
     void VerificarBuildChico() {
         LocalDateTime fechaInicio = LocalDateTime.of(2021, 2, 2, 2, 2);
@@ -22,6 +28,9 @@ class DirectorBusTest {
         assertEquals(40, bus.getAsientosPorPiso());
     }
 
+    /**
+     * Se instancia y verifica que el bus mediano se creo correctamente.
+     */
     @Test
     void VerificarBuildMediano() {
         LocalDateTime fechaInicio = LocalDateTime.of(2021, 2, 2, 2, 2);
@@ -32,6 +41,9 @@ class DirectorBusTest {
         assertEquals(60, bus.getAsientosPorPiso());
     }
 
+    /**
+     * Se instancia y verifica que el bus grande se creo correctamente.
+     */
     @Test
     void buildGrande() {
         LocalDateTime fechaInicio = LocalDateTime.of(2021, 2, 2, 2, 2);

@@ -5,9 +5,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Clase creada para verificar la creacion de asientos con el patron builder.
+ */
 class AsientoTest {
     Asiento asiento1;
     Asiento asiento2;
+
+    /**
+     * Se instancian los 2 asientos para los test.
+     */
     @BeforeEach
     void setUp() {
         Asiento.Builder builder = new Asiento.Builder(EstadoAsiento.OCUPADO, "1-3", 200);
@@ -20,6 +27,9 @@ class AsientoTest {
         asiento2 = builder2.buildAsiento();
     }
 
+    /**
+     * Se verifica la correcta instanciacion de asiento 1.
+     */
     @Test
     void verificacionSeteoCorrectoVariablesAsiento1(){
         assertEquals("1-3", asiento1.getCodigoAsiento());
@@ -29,6 +39,9 @@ class AsientoTest {
         assertEquals(false, asiento1.getReclinable());
     }
 
+    /**
+     * Se verifica la correcta instanciacion de asiento 2.
+     */
     @Test
     void verificacionSeteoCorrectoVariablesAsiento2(){
         assertEquals("4-1", asiento2.getCodigoAsiento());

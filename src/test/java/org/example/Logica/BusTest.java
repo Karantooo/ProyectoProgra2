@@ -8,6 +8,9 @@ import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Clase para verificar La creacion de los buses con el patron builder
+ */
 class BusTest {
 
     @BeforeEach
@@ -15,6 +18,9 @@ class BusTest {
 
     }
 
+    /**
+     * Se instancia un bus para verificar que el builder funciona correctamente
+     */
     @Test
     void verificarPatronBuild(){
         LocalDateTime fechaYHora = LocalDateTime.of(2023, 1, 1, 1, 1);
