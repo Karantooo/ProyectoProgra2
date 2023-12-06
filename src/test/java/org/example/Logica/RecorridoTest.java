@@ -7,9 +7,16 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Clase para verificar la correcta creacion del recorrido.
+ */
 class RecorridoTest {
 
     Recorrido recorrido1;
+
+    /**
+     * Se crea recorrido.
+     */
     @BeforeEach
     void setUp() {
         recorrido1 = new Recorrido("Concepcion", "Santiago", LocalDateTime.of(2021, 2, 2, 2,2 ), 360);
