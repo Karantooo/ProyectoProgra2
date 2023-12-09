@@ -60,6 +60,12 @@ public class PanelCrearViaje extends JPanel {
         labelDestino.setHorizontalAlignment(SwingConstants.CENTER);
         labelDestino.setVerticalAlignment(SwingConstants.CENTER);
         this.add(labelDestino);
+        JLabel labelHoraDeSalida = new JLabel("Hora de salida(En formato de 24 horas)");
+        labelHoraDeSalida.setFont(new Font("SansSerif", Font.PLAIN, 30));
+        labelHoraDeSalida.setBounds(500,yInicial + 155,600,50);
+        labelHoraDeSalida.setHorizontalAlignment(SwingConstants.CENTER);
+        labelHoraDeSalida.setVerticalAlignment(SwingConstants.CENTER);
+        this.add(labelHoraDeSalida);
         JLabel labelHora = new JLabel("Hora: ");
         labelHora.setFont(new Font("SansSerif", Font.PLAIN, 30));
         labelHora.setBounds(0,yInicial + 200,150,50);
@@ -227,15 +233,19 @@ public class PanelCrearViaje extends JPanel {
      * @return true si el envio es valido, false si no
      */
     private boolean revisarEnvio(){
-        if(Integer.parseInt(hora) < 0 | Integer.parseInt(hora) > 23) return false;
-        if(Integer.parseInt(minuto) < 0 | Integer.parseInt(minuto) > 59) return false;
-        if(Integer.parseInt(duracion) < 0) return false;
-        if(contieneNumero(origen) | contieneNumero(destino)) return false;
-        if(Integer.parseInt(day) < 0 | Integer.parseInt(day) > 31) return false;
-        if(Integer.parseInt(month) < 0 | Integer.parseInt(month) > 12) return false;
-        if(Integer.parseInt(year) < 0) return false;
-        if(!(contieneSoloNumeros(hora) | contieneSoloNumeros(minuto) | contieneSoloNumeros(duracion) |
-                contieneSoloNumeros(day) | contieneSoloNumeros(month) | contieneSoloNumeros(year))) return false;
+        try {
+            if (Integer.parseInt(hora) < 0 | Integer.parseInt(hora) > 23) return false;
+            if (Integer.parseInt(minuto) < 0 | Integer.parseInt(minuto) > 59) return false;
+            if (Integer.parseInt(duracion) < 0) return false;
+            if (contieneNumero(origen) | contieneNumero(destino)) return false;
+            if (Integer.parseInt(day) < 0 | Integer.parseInt(day) > 31) return false;
+            if (Integer.parseInt(month) < 0 | Integer.parseInt(month) > 12) return false;
+            if (Integer.parseInt(year) < 0) return false;
+            if (!(contieneSoloNumeros(hora) | contieneSoloNumeros(minuto) | contieneSoloNumeros(duracion) |
+                    contieneSoloNumeros(day) | contieneSoloNumeros(month) | contieneSoloNumeros(year))) return false;
+        } catch (Exception e){
+            generarMensajeCreacionIncorrecta();
+        }
         return true;
     }
 

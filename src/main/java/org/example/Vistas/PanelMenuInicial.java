@@ -57,7 +57,8 @@ public class PanelMenuInicial extends JPanel {
         botonCrearViaje.setBackground(Color.CYAN);
         botonReservarAsiento.setBackground(Color.CYAN);
         botonReservarAsiento.setPreferredSize(new Dimension(this.getWidth() / 2,this.getHeight() / 2));
-
+        botonCrearViaje.setFont(new Font("SansSerif", Font.PLAIN, 50));
+        botonReservarAsiento.setFont(new Font("SansSerif", Font.PLAIN, 50));
         botonCrearViaje.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 generarPanelCrearViaje();
