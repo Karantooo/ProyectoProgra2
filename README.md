@@ -25,39 +25,39 @@ La idea es que el trabajador de la empresa decida si quiere crear un viaje o res
 ### Crear viaje
 Si decide crear un viaje se hace click en el botón izquierdo y le mostraria el siguiente panel:
 
-![Menu crear viaje](capturasDePantalla\capturaMenuCrearViaje.png)
+![Menu crear viaje](capturasDePantalla/capturaMenuCrearViaje.png)
 
 Aquí el usuario puede introducir los diferentes datos del viaje que quiere crear.
 
 Una vez introducidos los datos se presiona al botón crear lo que deberia de mostrar una de 2 opciones:
-![Creacion Correcta](capturasDePantalla\capturaCreacionCorrecta.png)
+![Creacion Correcta](capturasDePantalla/capturaCreacionCorrecta.png)
 Aparecera este panel si se crea exitosamente el viaje.
-![Creacion incorrecta](capturasDePantalla\capturaDatosIncorrectos(CrearViaje).png)
+![Creacion incorrecta](capturasDePantalla/capturaDatosIncorrectos(CrearViaje).png)
 Aparecera este panel si se ingresaron mal los datos.
 
 ### Reservar asiento
 Si escogemos reservar asiento nos aparecera el siguiente menu.
-![Seleccionar Viaje](capturasDePantalla\capturaMenuSeleccionarViaje.png)
+![Seleccionar Viaje](capturasDePantalla/capturaMenuSeleccionarViaje.png)
 Aqui se tiene que escoger a que viaje se desea acceder. Si antes de acceder a este menu el usuario no crea 3 viajes por el mismo, el programa va a generar 3 viajes por defecto que son los que se observan en la imagen.
 
 Si se selecciona un viaje aparecera algo similar a esto:
-![Seleccionar asiento](capturasDePantalla\capturaMenuSeleccionarAsiento.png)
+![Seleccionar asiento](capturasDePantalla/capturaMenuSeleccionarAsiento.png)
 
 Si se slecciona uno de estos asientos te muestra un panel con la informacion especifica a ese asiento. Mostraria algo similar a lo siguiente:
 
-![Detalle asiento](capturasDePantalla\capturaMenuDetallesAsiento.png)
+![Detalle asiento](capturasDePantalla/capturaMenuDetallesAsiento.png)
 
 Si se da click al botón de la derecha  mostraria lo siguiente:
-![Compra asiento](capturasDePantalla\capturaMenuCompraAsiento.png)
+![Compra asiento](capturasDePantalla/capturaMenuCompraAsiento.png)
 
 Si se ingresan datos inválidos se muestra:
-![Asiento incorrecto](capturasDePantalla\capturaDatosIncorrectos(CompraAsiento).png)
+![Asiento incorrecto](capturasDePantalla/capturaDatosIncorrectos(CompraAsiento).png)
 
 Caso contrario:
-![Compra correcta](capturasDePantalla\capturaCompraCorrecta.png)
+![Compra correcta](capturasDePantalla/capturaCompraCorrecta.png)
 
 Si se quisiese comprar un asiento que ya esta reservado por otro pasajero mostraria el siguiente mensaje:
-![Asiento ya ocupado](capturasDePantalla\capturaMensajeAsientoYaComprado.png)
+![Asiento ya ocupado](capturasDePantalla/capturaMensajeAsientoYaComprado.png)
 
 
 ## Eleccion de los patrones de uso:
