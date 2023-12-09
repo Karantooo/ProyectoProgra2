@@ -4,8 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Panel para generar el panel inicial en el que se decide si se quiere crear un viaje o reservar un asiento
+ * @author Benjamin Espinoza
+ */
 public class PanelMenuInicial extends JPanel {
     private PanelPrincipal panelPrincipal;
+
+    /**
+     * Se establece las condiciones iniciales del panel como sus dimensiones, layout
+     * @param panelPrincipal
+     */
     public PanelMenuInicial(PanelPrincipal panelPrincipal){
         this.panelPrincipal = panelPrincipal;
         this.setLayout(new GridLayout(1,2));

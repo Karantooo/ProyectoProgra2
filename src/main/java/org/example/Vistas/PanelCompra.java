@@ -4,12 +4,15 @@ import org.example.Logica.Asiento;
 import org.example.Logica.Pasajero;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Clase tipo JPanel para manejar la compra de un asiento
+ * @author Benjamin Espinoza
+ */
 public class PanelCompra extends JPanel {
     private Asiento asiento;
     private Pasajero pasajero;
@@ -18,6 +21,14 @@ public class PanelCompra extends JPanel {
     private String banco;
     private String numCuenta;
     private PanelReservarAsiento panelReservarAsiento;
+
+    /**
+     * En el constructor se crean todos los jlabels para identificar cada JtextFields y se crean todos los JTextFields
+     * para introducir las caracteristicas del Pasajero que se desea asignar al asiento, tambien se genera el JButtons
+     * Enviar para asignar el pasajero
+     * @param asiento asiento que desea comprar
+     * @param panelReservarAsiento PanelReservaAsiento desde el cual se genero este PanelCompra
+     */
     public PanelCompra(Asiento asiento, PanelReservarAsiento panelReservarAsiento) {
         this.panelReservarAsiento = panelReservarAsiento;
         this.setLayout(null);
@@ -100,16 +111,29 @@ public class PanelCompra extends JPanel {
         this.add(botonEnviar);
     }
 
+    /**
+     * Metodo para asignar el pasajero al asiento y generar el mensaje de creacion correcta
+     */
     private void asignarPasajero() {
         this.pasajero = new Pasajero(nombre, apellido, banco, numCuenta);
         this.asiento.setPasajero(pasajero);
         generarMensajeCreacionCorrecta();
     }
 
+    /**
+     * Metodo para revisar si es que el envio es valido
+     * @return falso si no es valido, true si lo es
+     */
     private boolean revisarEnvio() {
         if(contieneNumero(nombre) | contieneNumero(apellido) | contieneNumero(banco)) return false;
         else return contieneSoloNumeros(numCuenta);
     }
+
+    /**
+     * Metodo para revisar si un string contiene algun numero
+     * @param s String ingresado
+     * @return true si es que contiene al menos un numero, false si no
+     */
     private boolean contieneNumero(String s) {
         for (int i = 0; i < s.length(); i++) {
             if (Character.isDigit(s.charAt(i))) {
@@ -118,6 +142,12 @@ public class PanelCompra extends JPanel {
         }
         return false;
     }
+
+    /**
+     * Metodo que revisa si un string contiene solo numeros
+     * @param s String ingresado
+     * @return false si contiene al menos una letra, true si no
+     */
     private boolean contieneSoloNumeros(String s){
         for (int i = 0; i < s.length(); i++) {
             if (Character.isLetter(s.charAt(i))) {
@@ -127,12 +157,24 @@ public class PanelCompra extends JPanel {
         return true;
     }
 
+    /**
+     * Metodo para generar un mensaje en caso de que no se ingresen todos los datos
+     */
     private void generarMensajeIngreseDatos() {
         JOptionPane.showMessageDialog(null, "Debes ingresar todos los datos!");
     }
+
+    /**
+     * Metodo para generar un mensaje en caso de que los datos sean invalidos
+     */
     private void generarMensajeCreacionIncorrecta() {
         JOptionPane.showMessageDialog(null, "Alguno de los datos ingresados es invalido");
     }
+
+    /**
+     * Metodo para generar un Panel con un mensaje de que la creacion fue correcta y ademas un boton para volver al menu
+     * inicial
+     */
     private void generarMensajeCreacionCorrecta() {
         this.removeAll();
 
@@ -156,6 +198,11 @@ public class PanelCompra extends JPanel {
         this.repaint();
         this.revalidate();
     }
+
+    /**
+     * Metodo que revisa si es que alguno de los datos no se ingreso
+     * @return true si es que alguno de los textos esta vacio, false si no
+     */
     private boolean revisarTextosVacios() {
         if(nombre.isEmpty() || apellido.isEmpty() || banco.isEmpty() || numCuenta.isEmpty()) return true;
         else return false;

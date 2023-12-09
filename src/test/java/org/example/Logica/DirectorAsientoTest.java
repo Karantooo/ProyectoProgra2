@@ -5,11 +5,19 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Se verifica que los Directores de asiento creen bien los asientos predeterminados
+ * @author Carlos Tomas Alvarez Norambuena
+ */
 class DirectorAsientoTest {
 
     Asiento asientoEconomico;
     Asiento asientoPremium;
     Asiento asientoEjecutivo;
+
+    /**
+     * Se instancian los diferentes asientos que se van a utilizar para los test
+     */
     @BeforeEach
     void setUp() {
         DirectorAsiento directorPremium = new DirectorAsiento();
@@ -21,6 +29,9 @@ class DirectorAsientoTest {
         asientoEconomico = directorEconomico.buildEconomico("3-3");
     }
 
+    /**
+     * Se veriifica que esta correctamente creado el asiento premium
+     */
     @Test
     void creacionAsientoPremium(){
         assertEquals("1-2", asientoPremium.getCodigoAsiento());
@@ -29,7 +40,9 @@ class DirectorAsientoTest {
         assertEquals(false, asientoPremium.getSistemaEntretenimiento());
         assertEquals(true, asientoPremium.getReclinable());
     }
-
+    /**
+     * Se veriifica que esta correctamente creado el asiento ejecutivo
+     */
     @Test
     void creacionAsientoEjecutivo(){
         assertEquals("2-2", asientoEjecutivo.getCodigoAsiento());
@@ -38,6 +51,10 @@ class DirectorAsientoTest {
         assertEquals(true, asientoEjecutivo.getSistemaEntretenimiento());
         assertEquals(true, asientoEjecutivo.getReclinable());
     }
+
+    /**
+     * Se veriifica que esta correctamente creado el asiento economico
+     */
     @Test
     void creacionAsientoEconomico(){
         assertEquals("3-3", asientoEconomico.getCodigoAsiento());

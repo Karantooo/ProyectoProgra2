@@ -6,8 +6,17 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 
+/**
+ * Clase tipo JPanel que se encarga de mostrar la informacion del viaje
+ * @author Benjamin Espinoza
+ */
 public class PanelViaje extends JPanel {
-    Bus bus;
+    private Bus bus;
+
+    /**
+     * Constructor de la clase, se encarga de agregar al panel la informacion necesaria para el viaje
+     * @param bus bus con el viaje que se desea mostar
+     */
     public PanelViaje(Bus bus){
         this.bus = bus;
         this.setBackground(Color.cyan);

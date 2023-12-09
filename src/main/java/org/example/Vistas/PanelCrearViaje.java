@@ -9,6 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDateTime;
 
+/**
+ * Clase tipo JPanel para manejar la creacion de un viaje
+ * @author Benjamin Espinoza
+ */
 public class PanelCrearViaje extends JPanel {
     private String origen;
     private String destino;
@@ -18,10 +22,17 @@ public class PanelCrearViaje extends JPanel {
     private String hora;
     private String minuto;
     private String duracion;
-    private LocalDateTime fechaYHora;
     private int capacidadPorPiso;
     private int cantidadDePisos;
     private PanelMenuInicial panelMenuInicial;
+
+    /**
+     * En el constructor se crean todos los jlabels para identificar cada JtextFields y se crean todos los JTextFields y
+     * JComboBox para introducir las caracteristicas del viaje que se desea crear, tambien se generan los JButtons Enviar
+     * y Volver para crear el viaje o volver al menu principal
+     *
+     * @param panelMenuInicial panel de menu inicial desde el cual se genero este panel
+     */
     public PanelCrearViaje(PanelMenuInicial panelMenuInicial){
         this.panelMenuInicial = panelMenuInicial;
         this.setBackground(Color.cyan);
@@ -191,10 +202,16 @@ public class PanelCrearViaje extends JPanel {
         this.add(botonVolver);
     }
 
+    /**
+     * Metodo que genera un mensaje en caso de que no ingrese todos los datos
+     */
     private void generarMensajeIngreseDatos(){
         JOptionPane.showMessageDialog(null, "Debes ingresar todos los datos!");
     }
 
+    /**
+     * Metodo que crea el viaje, lo agrega a los viajes y genera el mensaje de que fue creado correctamente
+     */
     private void crearViaje(){
         Recorrido recorrido = new Recorrido(origen, destino, LocalDateTime.of(Integer.parseInt(year),Integer.parseInt(month),Integer.parseInt(day),Integer.parseInt(hora),Integer.parseInt(minuto)), Integer.parseInt(duracion));
         Bus.BusBuilder busBuilder = new Bus.BusBuilder(recorrido);
@@ -203,9 +220,15 @@ public class PanelCrearViaje extends JPanel {
         panelMenuInicial.getPanelPrincipal().agregarBus(busBuilder.buildBus());
         generarMensajeCreacionCorrecta();
     }
+
+    /**
+     * Metodo que revisa si los datos ingresados son correctos, como si la Hora y minutos de salida son validos, si la
+     * duracion no es menor a cero, y si es que los datos que deben contener solo numeros o solo letras, lo hacen
+     * @return true si el envio es valido, false si no
+     */
     private boolean revisarEnvio(){
-        if(Integer.parseInt(hora) < 0 | Integer.parseInt(hora) > 24) return false;
-        if(Integer.parseInt(minuto) < 0 | Integer.parseInt(minuto) > 60) return false;
+        if(Integer.parseInt(hora) < 0 | Integer.parseInt(hora) > 23) return false;
+        if(Integer.parseInt(minuto) < 0 | Integer.parseInt(minuto) > 59) return false;
         if(Integer.parseInt(duracion) < 0) return false;
         if(contieneNumero(origen) | contieneNumero(destino)) return false;
         if(Integer.parseInt(day) < 0 | Integer.parseInt(day) > 31) return false;
@@ -216,11 +239,19 @@ public class PanelCrearViaje extends JPanel {
         return true;
     }
 
+    /**
+     * Metodo que revisa si ingreso todos los datos
+     * @return true si algun texto esta vacio, false sino
+     */
     private boolean revisarTextosVacios(){
         if(origen.isEmpty() | destino.isEmpty() | hora.isEmpty() | minuto.isEmpty() | day.isEmpty() |
         month.isEmpty() | year.isEmpty() | duracion.isEmpty()) return true;
         else return false;
     }
+
+    /**
+     * Metodo que genera el mensaje de creacion correcta, crea un boton para volver al menu inicial
+     */
     private void generarMensajeCreacionCorrecta() {
         this.removeAll();
 
@@ -246,10 +277,16 @@ public class PanelCrearViaje extends JPanel {
         revalidate();
     }
 
+    /**
+     * Metodo que genera mensaje si alguno de los datos es invalido
+     */
     private void generarMensajeCreacionIncorrecta() {
         JOptionPane.showMessageDialog(null, "Alguno de los datos ingresados es invalido");
     }
 
+    /**
+     * Metodo para volver al menu inicial
+     */
     private void volverMenuPrincipal(){
         this.remove(this);
         panelMenuInicial.generarNuevoMenuInicial();
@@ -257,6 +294,11 @@ public class PanelCrearViaje extends JPanel {
         this.revalidate();
     }
 
+    /**
+     * Metodo que revisa si un string contien un numero
+     * @param s String ingresado
+     * @return true si contiene algun numero y false si no
+     */
     private boolean contieneNumero(String s) {
         for (int i = 0; i < s.length(); i++) {
             if (Character.isDigit(s.charAt(i))) {
@@ -265,6 +307,12 @@ public class PanelCrearViaje extends JPanel {
         }
         return false;
     }
+
+    /**
+     * Metodo que revisa si un string contiene solo numeros
+     * @param s String ingresado
+     * @return false si contiene al menos una letra, true si no
+     */
     private boolean contieneSoloNumeros(String s){
         for (int i = 0; i < s.length(); i++) {
             if (Character.isLetter(s.charAt(i))) {
