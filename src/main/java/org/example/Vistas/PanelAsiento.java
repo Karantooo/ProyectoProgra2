@@ -15,7 +15,6 @@ import java.awt.event.MouseListener;
  */
 public class PanelAsiento extends JPanel {
     private Asiento asiento;
-    private String tipoAsiento;
     private String codigoAsiento;
     private JTextArea informacionAsiento;
     private PanelCorridaAsientos panelCorridaAsientos;
@@ -45,7 +44,6 @@ public class PanelAsiento extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 generarPanelDetallesAsiento();
-                System.out.println(getWidth() / 4);
             }
 
             @Override
@@ -84,7 +82,6 @@ public class PanelAsiento extends JPanel {
             default:
                 break;
         }
-        this.tipoAsiento = asiento.getDescripcionAsiento();
         this.codigoAsiento = asiento.getCodigoAsiento();
         informacionAsiento.setText("Numero de asiento: " + this.codigoAsiento);
         informacionAsiento.setFont(new Font("SansSerif", Font.BOLD, 15));
