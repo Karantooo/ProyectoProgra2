@@ -23,6 +23,9 @@ public class PanelMenuInicial extends JPanel {
         generarNuevoMenuInicial();
     }
 
+    /**
+     * Funcion que se utilzia para cambiar de un panelMenuInicial a un PanelcrearViaje
+     */
     public void generarPanelCrearViaje() {
         this.removeAll();
         this.add(new PanelCrearViaje(this));
@@ -30,6 +33,9 @@ public class PanelMenuInicial extends JPanel {
         revalidate();
     }
 
+    /**
+     * Funcion que se utilzia para cambiar de un panelMenuInicial a un PanelReservaAsiento
+     */
     public void generarPanelReservaAsiento() {
         this.removeAll();
         this.add(new PanelReservarAsiento(this));
@@ -37,6 +43,9 @@ public class PanelMenuInicial extends JPanel {
         revalidate();
     }
 
+    /**
+     * Funcion que se utilzia para cambiar de un panelMenuInicial a un PanelNuevoMenuInicial
+     */
     public void generarNuevoMenuInicial(){
         this.removeAll();
 
