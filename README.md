@@ -1,4 +1,4 @@
-# Proyecto administración de buses programacion 2
+# Proyecto administración de buses programacion 2 (informe)
 ## Integrantes del grupo
 Numero de Grupo: 1
 1. Benjamín Espinoza Henriquez (DyStorzion)
@@ -85,4 +85,5 @@ Esas serían las decisiones más relevantes que tomamos en el desarrollo del pro
 ## Autocritica
 En general diría que estructuramos bien el trabajo, espaciamos bien los tiempos de desarrollo, había una buena comunicación entre los integrantes del grupo y en general si teníamos una duda sobre el proyecto siempre nos dábamos una buena retroalimentación. Lo único que nos podríamos echar en cara es el hecho de que la primera semana y media del desarrollo del proyecto no trabajamos casi nada en el mismo, salvo crear el diagrama de casos de uso y el boceto del proyecto. A parte de eso consideramos que hicimos un buen trabajo. 
 
-
+## Instalación
+Simplemente hacer un git clone del repositorio https://github.com/Karantooo/ProyectoProgra2 y abrir la carpeta con intellij.
